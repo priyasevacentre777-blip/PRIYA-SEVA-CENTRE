@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priya Seva Center | Premium Local Services</title>
+    <title>Priya Seva Center | Premium Care in Kolkata</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,9 +25,6 @@
     <style>
         .view-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
         .view-active { display: block; opacity: 1; }
-        /* Hides scrollbar for the image slider but keeps it scrollable */
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-brandBg text-gray-800 font-sans antialiased pb-20 md:pb-0">
@@ -53,7 +50,7 @@
             </div>
         </div>
         <div class="flex space-x-8 font-semibold text-sm">
-            <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Home</button>
+            <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
             <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Track Services</button>
             <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md">Book Now</button>
         </div>
@@ -64,111 +61,54 @@
         <section id="portfolio" class="view-section view-active">
             
             <div class="bg-white px-6 py-12 md:py-20 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
-                <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Trusted Across Kolkata</span>
+                <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Premium Home Care</span>
                 <h2 class="text-4xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-6">
-                    Professional support, <br class="hidden md:block"><span class="text-brandRed">delivered to your door.</span>
+                    Professional care for your loved ones, <br class="hidden md:block"><span class="text-brandRed">right here in Kolkata.</span>
                 </h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Vetted professionals for healthcare, domestic assistance, and daily management. Book easily, track seamlessly.</p>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
                 
-                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-800 transition text-lg">
+                <div class="w-full h-64 md:h-96 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 mb-8 overflow-hidden shadow-inner border border-gray-100">
+                    <div class="text-center">
+                        <i class="fa-solid fa-image text-4xl mb-2"></i>
+                        <p class="text-sm mt-2">[ Insert high-quality photo of your staff/caregivers here ]</p>
+                    </div>
+                </div>
+                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-800 transition">
                     Book a Service Now
                 </button>
             </div>
 
-            <div class="pl-6 md:pl-0 max-w-5xl mx-auto mb-16">
-                <div class="flex justify-between items-end pr-6 md:pr-0 mb-6">
-                    <h3 class="text-2xl font-bold text-brandNavy">Our Services</h3>
-                    <div class="text-xs text-gray-400 font-bold uppercase tracking-wider flex items-center">
-                        Swipe <i class="fa-solid fa-arrow-right-long ml-2"></i>
-                    </div>
-                </div>
-                
-                <div class="flex overflow-x-auto snap-x snap-mandatory hide-scroll gap-4 pb-4 pr-6 md:pr-0">
-                    
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Maid]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-broom"></i></div>
-                            <h4 class="font-bold text-brandNavy">1. Maid / Aya</h4>
-                            <button onclick="preSelectCategory('Maid / Aya')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
+            <div class="px-6 max-w-5xl mx-auto mb-16">
+                <h3 class="text-xl font-bold text-brandNavy mb-6 uppercase tracking-wide">Our Expertise</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-user-nurse"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Nurse & Aya Services</h4>
+                            <p class="text-sm text-gray-500 mt-1">24/7 bedside assistance, feeding, and daily living support.</p>
                         </div>
                     </div>
-
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Nurse]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-user-nurse"></i></div>
-                            <h4 class="font-bold text-brandNavy">2. Nurse / Elder Care</h4>
-                            <button onclick="preSelectCategory('Nurse / Elder Care')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-person-walking"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Physiotherapy</h4>
+                            <p class="text-sm text-gray-500 mt-1">Post-op recovery and mobility exercises at home.</p>
                         </div>
                     </div>
-
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Physio]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-heart-pulse"></i></div>
-                            <h4 class="font-bold text-brandNavy">3. Physiotherapy</h4>
-                            <button onclick="preSelectCategory('Physiotherapy / Health Check-ups')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-hands-holding-child"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Elderly Care</h4>
+                            <p class="text-sm text-gray-500 mt-1">Compassionate companionship and medical monitoring.</p>
                         </div>
                     </div>
-
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Baby]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-baby"></i></div>
-                            <h4 class="font-bold text-brandNavy">4. Babysitters</h4>
-                            <button onclick="preSelectCategory('Babysitters')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-stethoscope"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Specialized Plans</h4>
+                            <p class="text-sm text-gray-500 mt-1">ECG, BP monitoring, and wound dressing at your doorstep.</p>
                         </div>
                     </div>
-
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Pet]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-dog"></i></div>
-                            <h4 class="font-bold text-brandNavy">5. Pet Sitters</h4>
-                            <button onclick="preSelectCategory('Pet Sitters')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
-                        </div>
-                    </div>
-
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Driver]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-car"></i></div>
-                            <h4 class="font-bold text-brandNavy">6. Drivers</h4>
-                            <button onclick="preSelectCategory('Drivers')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
-                        </div>
-                    </div>
-
-                    <div class="w-64 md:w-72 shrink-0 snap-center bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                        <div class="h-32 bg-gray-200 relative flex items-center justify-center text-gray-400">
-                            <img src="" alt="" class="absolute inset-0 w-full h-full object-cover">
-                            <span class="text-xs font-bold z-10">[Image: Guard]</span>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-xl text-brandRed mb-2"><i class="fa-solid fa-shield-halved"></i></div>
-                            <h4 class="font-bold text-brandNavy">7. Security Guard</h4>
-                            <button onclick="preSelectCategory('Security Guard')" class="mt-3 text-sm text-brandRed font-bold hover:underline">Book Now &rarr;</button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -187,7 +127,7 @@
 
             <div id="bookingStep2" class="hidden">
                 <button onclick="goBackToCategories()" class="text-xs font-bold text-brandRed uppercase tracking-wider mb-4 flex items-center">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Back to List
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Back to Options
                 </button>
                 
                 <div class="mb-6">
@@ -280,7 +220,7 @@
     </div>
 
     <script>
-        // Data Configuration
+        // Data Configuration for 7 Services
         const servicesData = [
             { id: 1, name: "Maid / Aya", icon: "fa-broom", desc: "Professional cooking, thorough cleaning, laundry, and basic household assistance tailored to your daily needs.", subs: ["Cooking Specialist", "Full House Cleaning", "Laundry & Ironing Service", "Basic Elder Sitting", "Basic Child Assistance"] },
             { id: 2, name: "Nurse / Elder Care", icon: "fa-user-nurse", desc: "Compassionate bedside care, post-operative support, and daily medical monitoring for your loved ones.", subs: ["12-Hour Night/Day Nurse", "24-Hour Critical Care Support", "Post-Surgical Nursing", "Injections & Daily Vitals Tracking"] },
@@ -297,7 +237,7 @@
             let html = '';
             servicesData.forEach(service => {
                 html += `
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:border-brandNavy transition">
                     <div class="p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3 w-1/2">
                             <div class="text-xl text-brandRed w-6 text-center"><i class="fa-solid ${service.icon}"></i></div>
@@ -346,12 +286,6 @@
             } else {
                 el.classList.add('hidden');
             }
-        }
-
-        // Pre-select from Home Slider
-        function preSelectCategory(name) {
-            switchView('booking');
-            selectCategory(name);
         }
 
         // Form Builder
