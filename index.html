@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya Seva Center | Premium Care in Kolkata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brandNavy: '#0f172a',
+                        brandRed: '#e11d48',
+                        brandBg: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions for our app views */
+        .view-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .view-active { display: block; opacity: 1; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-brandBg text-gray-800 font-sans antialiased pb-20 md:pb-0">
+
+    <nav class="md:hidden fixed bottom-0 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 border-t border-gray-100 flex justify-around items-center h-16">
+        <button onclick="switchView('portfolio')" id="nav-portfolio" class="flex flex-col items-center text-brandRed w-1/3">
+            <i class="fa-solid fa-house text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Home</span>
+        </button>
+        <button onclick="switchView('booking')" id="nav-booking" class="flex flex-col items-center text-gray-400 w-1/3 hover:text-brandNavy transition">
+            <i class="fa-solid fa-calendar-plus text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Book</span>
+        </button>
+        <button onclick="switchView('tracking')" id="nav-tracking" class="flex flex-col items-center text-gray-400 w-1/3 hover:text-brandNavy transition">
+            <i class="fa-solid fa-user-clock text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Track</span>
+        </button>
+    </nav>
+
+    <header class="hidden md:flex bg-white shadow-sm fixed w-full top-0 z-40 border-b border-gray-100 h-20 items-center justify-between px-8">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('portfolio')">
+            <div class="bg-brandNavy text-white w-10 h-10 rounded-lg flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-plus"></i></div>
+            <div>
+                <h1 class="font-bold text-brandNavy text-lg leading-tight">Priya Seva Center</h1>
+                <p class="text-xs text-gray-500">Kolkata</p>
+            </div>
+        </div>
+        <div class="flex space-x-8 font-semibold text-sm">
+            <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
+            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Track Services</button>
+            <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md">Book Now</button>
+        </div>
+    </header>
+
+    <main class="md:pt-24 min-h-screen">
+
+        <section id="portfolio" class="view-section view-active">
+            
+            <div class="bg-white px-6 py-12 md:py-20 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
+                <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Premium Home Care</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-6">
+                    Professional care for your loved ones, <br class="hidden md:block"><span class="text-brandRed">right here in Kolkata.</span>
+                </h2>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
+                <div class="w-full h-64 md:h-96 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 mb-8 overflow-hidden shadow-inner border border-gray-100">
+                    <div class="text-center">
+                        <i class="fa-solid fa-image text-4xl mb-2"></i>
+                        <p class="text-sm">[ Insert high-quality photo of your staff/caregivers here ]</p>
+                    </div>
+                </div>
+                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-800 transition">
+                    Book a Service Now
+                </button>
+            </div>
+
+            <div class="px-6 max-w-5xl mx-auto mb-16">
+                <h3 class="text-xl font-bold text-brandNavy mb-6 uppercase tracking-wide">Our Expertise</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-user-nurse"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Nurse & Aya Services</h4>
+                            <p class="text-sm text-gray-500 mt-1">24/7 bedside assistance, feeding, and daily living support.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-person-walking"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Physiotherapy</h4>
+                            <p class="text-sm text-gray-500 mt-1">Post-op recovery and mobility exercises at home.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-hands-holding-child"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Elderly Care</h4>
+                            <p class="text-sm text-gray-500 mt-1">Compassionate companionship and medical monitoring.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
+                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-stethoscope"></i></div>
+                        <div>
+                            <h4 class="font-bold text-brandNavy text-lg">Specialized Plans</h4>
+                            <p class="text-sm text-gray-500 mt-1">ECG, BP monitoring, and wound dressing at your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="view-section px-6 py-8 max-w-lg mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-brandNavy">Request Care</h2>
+                <p class="text-sm text-gray-500 mt-2">Fill this out, and our manager will call you shortly to confirm details.</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleBooking(event)" class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-gray-100 space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Your Name</label>
+                    <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy focus:ring-1 focus:ring-brandNavy transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Phone Number</label>
+                    <input type="tel" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy focus:ring-1 focus:ring-brandNavy transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Service Needed</label>
+                    <select required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition appearance-none">
+                        <option value="" disabled selected>Select a service...</option>
+                        <option>Maid / Aya Service</option>
+                        <option>Nurse (12 Hour / 24 Hour)</option>
+                        <option>Physiotherapy</option>
+                        <option>Other Medical Needs</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Preferred Start Date</label>
+                    <input type="date" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition text-gray-700">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Location / Pin Code</label>
+                    <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                </div>
+                
+                <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition mt-6">
+                    Submit Request
+                </button>
+            </form>
+        </section>
+
+        <section id="tracking" class="view-section px-6 py-8 max-w-lg mx-auto">
+            
+            <div id="loginScreen" class="bg-white p-8 rounded-3xl shadow-md border border-gray-100 text-center mt-10">
+                <div class="bg-blue-50 text-brandNavy w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h2 class="text-2xl font-bold text-brandNavy mb-2">Track Your Services</h2>
+                <p class="text-sm text-gray-500 mb-6">Enter your registered phone number to view ongoing services and invoices.</p>
+                <input type="tel" placeholder="e.g. 9876543210" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-center text-lg tracking-widest focus:outline-none focus:border-brandNavy mb-4">
+                <button onclick="mockLogin()" class="w-full bg-brandRed text-white font-bold py-4 rounded-xl shadow-md hover:bg-red-700 transition">
+                    View My Dashboard
+                </button>
+            </div>
+
+            <div id="dashboardScreen" class="hidden">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-brandNavy">My Dashboard</h2>
+                        <p class="text-sm text-gray-500">Welcome back, Client.</p>
+                    </div>
+                    <button onclick="mockLogout()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Log Out</button>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
+                    <div class="bg-green-50 px-6 py-3 border-b border-gray-100 flex justify-between items-center">
+                        <span class="text-xs font-bold text-green-700 uppercase tracking-wider"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Active Ongoing</span>
+                        <span class="text-xs font-bold text-gray-500">ID: #PSC-8842</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brandNavy mb-1">12-Hour Aya Service</h3>
+                        <p class="text-sm text-gray-500 mb-4">Daily • 8:00 AM to 8:00 PM</p>
+                        
+                        <div class="flex space-x-3 mt-6 border-t border-gray-100 pt-4">
+                            <button onclick="requestAction('edit')" class="flex-1 bg-gray-50 hover:bg-gray-100 text-brandNavy font-semibold py-2 rounded-lg text-sm transition border border-gray-200">
+                                <i class="fa-solid fa-pen mr-2"></i>Edit
+                            </button>
+                            <button onclick="requestAction('cancel')" class="flex-1 bg-red-50 hover:bg-red-100 text-brandRed font-semibold py-2 rounded-lg text-sm transition border border-red-100">
+                                <i class="fa-solid fa-xmark mr-2"></i>Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-3xl border border-gray-200 overflow-hidden opacity-75">
+                    <div class="px-6 py-3 border-b border-gray-200 flex justify-between items-center">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Completed</span>
+                        <span class="text-xs font-bold text-gray-500">May 2026</span>
+                    </div>
+                    <div class="p-6 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-700">Physiotherapy (10 Sessions)</h3>
+                            <p class="text-xs text-gray-500">Paid in full</p>
+                        </div>
+                        <button class="bg-white border border-gray-300 text-gray-600 px-3 py-2 rounded-lg text-xs font-bold hover:bg-gray-100">
+                            <i class="fa-solid fa-file-arrow-down mr-1"></i> Invoice
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="actionModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="bg-green-100 text-green-500 w-16 h-16 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fa-solid fa-check"></i></div>
+            <h3 class="text-xl font-bold text-brandNavy mb-2" id="modalTitle">Request Sent</h3>
+            <p class="text-gray-500 text-sm mb-6" id="modalText">We have received your request. Our admin team will contact you shortly to confirm the updates.</p>
+            <button onclick="closeModal()" class="w-full bg-gray-100 text-brandNavy font-bold py-3 rounded-xl hover:bg-gray-200 transition">Understood</button>
+        </div>
+    </div>
+
+    <script>
+        // Switch between Home, Book, and Track views
+        function switchView(viewId) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('view-active');
+            });
+            // Show target view
+            document.getElementById(viewId).classList.add('view-active');
+            
+            // Update Mobile Nav styling
+            const navIds = ['portfolio', 'booking', 'tracking'];
+            navIds.forEach(id => {
+                const btn = document.getElementById('nav-' + id);
+                if(btn) {
+                    if(id === viewId) {
+                        btn.classList.remove('text-gray-400');
+                        btn.classList.add('text-brandRed');
+                    } else {
+                        btn.classList.add('text-gray-400');
+                        btn.classList.remove('text-brandRed');
+                    }
+                }
+            });
+            window.scrollTo(0,0);
+        }
+
+        // Handle Booking Form Submit
+        function handleBooking(e) {
+            e.preventDefault();
+            showModal("Booking Received!", "We will call you within 30 minutes to finalize your care plan.");
+            e.target.reset();
+        }
+
+        // Mock Dashboard Logic
+        function mockLogin() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.remove('hidden');
+        }
+
+        function mockLogout() {
+            document.getElementById('dashboardScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+        }
+
+        function requestAction(type) {
+            if(type === 'cancel') {
+                showModal("Cancellation Requested", "Your request has been flagged in our system. We will call you to confirm the cancellation date.");
+            } else {
+                showModal("Change Requested", "Our team has been notified. We will call you shortly to update your service schedule.");
+            }
+        }
+
+        // Modal Logic
+        function showModal(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = text;
+            const modal = document.getElementById('actionModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => { document.getElementById('modalContent').classList.remove('scale-95'); document.getElementById('modalContent').classList.add('scale-100'); }, 10);
+        }
+
+        function closeModal() {
+            document.getElementById('modalContent').classList.remove('scale-100');
+            document.getElementById('modalContent').classList.add('scale-95');
+            setTimeout(() => { document.getElementById('actionModal').classList.add('hidden'); }, 200);
+        }
+    </script>
+</body>
+</html>
