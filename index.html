@@ -26,28 +26,37 @@
         .view-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
         .view-active { display: block; opacity: 1; }
 
-        /* --- NEW SLIDESHOW CSS --- */
+        /* --- CUSTOM ANIMATIONS --- */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+        .animate-heartbeat {
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transform: scale(1); }
+            50% { box-shadow: 0 0 20px rgba(225, 29, 72, 0.4); transform: scale(1.03); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2.5s infinite;
+        }
+
+        /* --- SLIDESHOW CSS --- */
         .hero-slide {
             position: absolute;
             inset: 0;
-            transform: translateX(100%); /* Starts off-screen right */
-            transition: transform 0.8s ease-in-out;
             z-index: 1;
-        }
-        .hero-slide.active {
-            transform: translateX(0); /* Moves to center */
-            z-index: 2;
-        }
-        .hero-slide.exit {
-            transform: translateX(-100%); /* Exits to the left */
-            z-index: 1;
+            /* Transform is handled dynamically by JS to prevent rewinding */
         }
         
         .hero-overlay {
             opacity: 0;
             transition: opacity 0.6s ease-in-out;
         }
-        /* Only fades in the text AFTER the slide finishes moving */
+        
+        /* Only fades in the text AFTER the slide finishes moving (0.8s) */
         .hero-slide.active .hero-overlay {
             opacity: 1;
             transition-delay: 0.8s; 
@@ -57,7 +66,7 @@
 <body class="bg-brandBg text-gray-800 font-sans antialiased pb-20 md:pb-0">
 
     <nav class="md:hidden fixed bottom-0 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 border-t border-gray-100 flex justify-around items-center h-16">
-        <button onclick="switchView('portfolio')" id="nav-portfolio" class="flex flex-col items-center text-brandRed w-1/3">
+        <button onclick="switchView('portfolio')" id="nav-portfolio" class="flex flex-col items-center text-brandRed w-1/3 transition">
             <i class="fa-solid fa-house text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Home</span>
         </button>
         <button onclick="switchView('booking')" id="nav-booking" class="flex flex-col items-center text-gray-400 w-1/3 hover:text-brandNavy transition">
@@ -68,40 +77,52 @@
         </button>
     </nav>
 
-    <header class="hidden md:flex bg-white shadow-sm fixed w-full top-0 z-40 border-b border-gray-100 h-20 items-center justify-between px-8">
+    <header class="flex bg-white shadow-sm fixed w-full top-0 z-40 border-b border-gray-100 h-16 md:h-20 items-center justify-between px-4 md:px-8">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('portfolio')">
-            <div class="bg-brandNavy text-white w-10 h-10 rounded-lg flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-plus"></i></div>
+            <div class="bg-red-50 text-brandRed w-10 h-10 rounded-lg flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-heart animate-heartbeat"></i>
+            </div>
             <div>
-                <h1 class="font-bold text-brandNavy text-lg leading-tight">Priya Seva Center</h1>
-                <p class="text-xs text-gray-500">Kolkata</p>
+                <h1 class="font-bold text-brandNavy text-base md:text-lg leading-tight">Priya Seva Center</h1>
+                <p class="text-[10px] md:text-xs text-gray-500">Kolkata</p>
             </div>
         </div>
-        <div class="flex space-x-8 font-semibold text-sm">
+        <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
             <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
             <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Track Services</button>
-            <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md">Book Now</button>
+            <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md animate-pulse-glow">Book Now</button>
         </div>
     </header>
 
-    <main class="md:pt-24 min-h-screen">
+    <main class="pt-20 md:pt-24 min-h-screen">
 
         <section id="portfolio" class="view-section view-active">
             
-            <div class="bg-white px-6 py-12 md:py-16 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
+            <div class="bg-white px-4 md:px-6 py-10 md:py-16 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
                 <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Premium Home Care</span>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-6">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-4 md:mb-6">
                     Professional care for your loved ones, <br class="hidden md:block"><span class="text-brandRed">right here in Kolkata.</span>
                 </h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto text-sm md:text-base">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
                 
-                <div class="relative w-full h-72 md:h-[450px] bg-gray-900 rounded-2xl overflow-hidden shadow-xl mb-8 border border-gray-200">
+                <div class="relative w-full h-80 md:h-[450px] bg-gray-900 rounded-2xl overflow-hidden shadow-xl mb-8 border border-gray-200">
                     
+                    <button onclick="slidePrev()" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-brandRed text-white rounded-full flex items-center justify-center z-20 transition backdrop-blur-sm shadow-md">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button onclick="slideNext()" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-brandRed text-white rounded-full flex items-center justify-center z-20 transition backdrop-blur-sm shadow-md">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
                     <div class="hero-slide active">
-                        <img src="maid.jpg" alt="Maid Services" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Maid / Aya Services</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="maid.png" alt="Maid Services" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Trained Ayas & Maids</span>
+                                    <span class="hidden md:block">Maid / Aya Services</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Thorough Cleaning</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Professional Cooking</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> 100% Background Verified</li>
@@ -111,11 +132,14 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="nurse.jpg" alt="Nurse Care" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Nurse / Elder Care</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="nurse.png" alt="Nurse Care" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Verified Nurses & Elder Care</span>
+                                    <span class="hidden md:block">Nurse / Elder Care</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> 12/24 Hr Bedside Care</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Daily Vitals Monitoring</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Compassionate Support</li>
@@ -125,11 +149,14 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="health.jpg" alt="Physiotherapy" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Physiotherapy</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="health.png" alt="Physiotherapy" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Health Checks & Physiotherapy</span>
+                                    <span class="hidden md:block">Health Checks & Physiotherapy</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Orthopedic Rehab</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Mobility Training</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> At-Home Sessions</li>
@@ -139,11 +166,14 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="babysitter.jpg" alt="Babysitter" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Babysitters</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="babysitter.png" alt="Babysitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Trusted Babysitters</span>
+                                    <span class="hidden md:block">Babysitters</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Newborn Care</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Toddler Engagement</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Safe & Reliable</li>
@@ -153,11 +183,14 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="petsitter.jpg" alt="Pet Sitter" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Pet Sitters</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="petsitter.png" alt="Pet Sitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Reliable Pet Sitters</span>
+                                    <span class="hidden md:block">Pet Sitters</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Daily Walking</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Feeding Routines</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Compassionate Care</li>
@@ -167,11 +200,14 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="driver.jpg" alt="Professional Driver" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Professional Drivers</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="driver.png" alt="Professional Driver" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Professional Drivers</span>
+                                    <span class="hidden md:block">Professional Drivers</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Corporate & Commute</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Luxury Car Handling</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Punctual & Safe</li>
@@ -181,11 +217,14 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="security.jpg" alt="Security Guard" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
-                            <div class="ml-auto w-full max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Security Guards</h3>
-                                <ul class="text-gray-200 text-sm space-y-2">
+                        <img src="security.png" alt="Security Guard" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                                    <span class="md:hidden">Expert Security Guards</span>
+                                    <span class="hidden md:block">Security Guards</span>
+                                </h3>
+                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Gate Management</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Night Patrols</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Vetted Personnel</li>
@@ -195,7 +234,7 @@
                     </div>
 
                 </div>
-                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-800 transition text-lg">
+                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full hover:bg-gray-800 transition text-lg animate-pulse-glow">
                     Book a Service Now
                 </button>
             </div>
@@ -236,22 +275,18 @@
         </section>
 
         <section id="booking" class="view-section px-6 py-8 max-w-xl mx-auto">
-            
             <div id="bookingStep1">
                 <div class="text-center mb-8">
                     <h2 class="text-3xl font-extrabold text-brandNavy">Select a Service</h2>
                     <p class="text-sm text-gray-500 mt-2">Tap the arrow for info, or click Select to build your plan.</p>
                 </div>
-                
-                <div class="space-y-3" id="accordionContainer">
-                    </div>
+                <div class="space-y-3" id="accordionContainer"></div>
             </div>
 
             <div id="bookingStep2" class="hidden">
                 <button onclick="goBackToCategories()" class="text-xs font-bold text-brandRed uppercase tracking-wider mb-4 flex items-center">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Back to Options
                 </button>
-                
                 <div class="mb-6">
                     <h2 class="text-2xl font-extrabold text-brandNavy" id="selectedCategoryTitle">Service Details</h2>
                     <p class="text-sm text-gray-500 mt-1">Select sub-services and input your schedule choices.</p>
@@ -268,8 +303,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Select Options Needed</label>
-                        <div id="subServicesContainer" class="space-y-2.5 bg-gray-50 p-4 rounded-xl border border-gray-100">
-                            </div>
+                        <div id="subServicesContainer" class="space-y-2.5 bg-gray-50 p-4 rounded-xl border border-gray-100"></div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
@@ -281,7 +315,7 @@
                             <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
                         </div>
                     </div>
-                    <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition mt-4">
+                    <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition mt-4 animate-pulse-glow">
                         Confirm & Request Booking
                     </button>
                 </form>
@@ -307,7 +341,6 @@
                     </div>
                     <button onclick="mockLogout()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Sign Out</button>
                 </div>
-
                 <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
                     <div class="bg-green-50 px-6 py-3 border-b border-gray-100 flex justify-between items-center">
                         <span class="text-xs font-bold text-green-700 uppercase tracking-wider"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Active Schedule</span>
@@ -316,7 +349,6 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brandNavy mb-1">Regular Maid Service</h3>
                         <p class="text-sm text-gray-500 mb-2">Selected: Cooking, House Cleaning</p>
-                        
                         <div class="flex space-x-3 mt-6 border-t border-gray-100 pt-4">
                             <button onclick="requestAction('edit')" class="flex-1 bg-gray-50 hover:bg-gray-100 text-brandNavy font-semibold py-2 rounded-lg text-sm transition border border-gray-200">
                                 <i class="fa-solid fa-pen mr-2"></i>Change
@@ -342,28 +374,81 @@
     </div>
 
     <script>
-        // --- NEW SLIDESHOW JAVASCRIPT ---
-        document.addEventListener('DOMContentLoaded', () => {
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.hero-slide');
-            
-            if(slides.length > 0) {
-                setInterval(() => {
-                    const prev = currentSlide;
-                    currentSlide = (currentSlide + 1) % slides.length;
+        // --- BULLETPROOF INFINITE SLIDESHOW ENGINE ---
+        let currentSlide = 0;
+        let slideInterval;
+        const slides = document.querySelectorAll('.hero-slide');
 
-                    // Move old slide out to the left
-                    slides[prev].classList.replace('active', 'exit');
-                    
-                    // Reset new slide immediately to the right side, then bring it in
-                    slides[currentSlide].classList.remove('exit'); 
-                    slides[currentSlide].classList.add('active');
+        // Setup initial slide positions invisibly
+        function initSlides() {
+            slides.forEach((slide, index) => {
+                if(index !== 0) {
+                    slide.style.transition = 'none';
+                    slide.style.transform = 'translateX(100%)';
+                } else {
+                    slide.style.transform = 'translateX(0)';
+                }
+            });
+            startInterval();
+        }
 
-                }, 10000); // 10 seconds per slide
+        // Logic to move between slides without "rewind" glitch
+        function goToSlide(newIndex, direction = 'next') {
+            if (newIndex === currentSlide) return;
+
+            const current = slides[currentSlide];
+            const next = slides[newIndex];
+
+            // Setup next slide position instantly (no animation)
+            next.style.transition = 'none';
+            if (direction === 'next') {
+                next.style.transform = 'translateX(100%)';
+                current.style.transform = 'translateX(-100%)'; // Move old out
+            } else {
+                next.style.transform = 'translateX(-100%)';
+                current.style.transform = 'translateX(100%)'; // Move old out
             }
-        });
 
-        // Data Configuration for 7 Services
+            // Force browser reflow to register instant position
+            void next.offsetWidth; 
+
+            // Enable animations and glide into center
+            current.style.transition = 'transform 0.8s ease-in-out';
+            next.style.transition = 'transform 0.8s ease-in-out';
+            next.style.transform = 'translateX(0)';
+
+            // Update Overlay states
+            current.classList.remove('active');
+            next.classList.add('active');
+            
+            currentSlide = newIndex;
+        }
+
+        function slideNext() {
+            let nextIndex = (currentSlide + 1) % slides.length;
+            goToSlide(nextIndex, 'next');
+            resetInterval();
+        }
+
+        function slidePrev() {
+            let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+            goToSlide(prevIndex, 'prev');
+            resetInterval();
+        }
+
+        function startInterval() {
+            slideInterval = setInterval(slideNext, 10000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        document.addEventListener('DOMContentLoaded', initSlides);
+
+
+        // --- EXISTING BOOKING & DATA LOGIC ---
         const servicesData = [
             { id: 1, name: "Maid / Aya", icon: "fa-broom", desc: "Professional cooking, thorough cleaning, laundry, and basic household assistance tailored to your daily needs.", subs: ["Cooking Specialist", "Full House Cleaning", "Laundry & Ironing Service", "Basic Elder Sitting", "Basic Child Assistance"] },
             { id: 2, name: "Nurse / Elder Care", icon: "fa-user-nurse", desc: "Compassionate bedside care, post-operative support, and daily medical monitoring for your loved ones.", subs: ["12-Hour Night/Day Nurse", "24-Hour Critical Care Support", "Post-Surgical Nursing", "Injections & Daily Vitals Tracking"] },
@@ -374,7 +459,6 @@
             { id: 7, name: "Security Guard", icon: "fa-shield-halved", desc: "Vetted security personnel for residential complexes, commercial spaces, and event protection.", subs: ["Gate Management Security", "Night Shift Property Patrol", "Commercial Premise Officer", "Event Protection Support"] }
         ];
 
-        // Initialize Accordion List on Load
         function buildAccordion() {
             const container = document.getElementById('accordionContainer');
             let html = '';
@@ -388,7 +472,7 @@
                         </div>
                         <div class="flex space-x-2">
                             <button onclick="toggleInfo('info-${service.id}')" class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition border border-gray-100"><i class="fa-solid fa-chevron-down text-xs"></i></button>
-                            <button onclick="selectCategory('${service.name}')" class="bg-brandRed text-white px-4 py-1.5 rounded-lg text-sm font-bold shadow-md hover:bg-red-700 transition">Select</button>
+                            <button onclick="selectCategory('${service.name}')" class="bg-brandRed text-white px-4 py-1.5 rounded-lg text-sm font-bold shadow-md hover:bg-red-700 transition animate-pulse-glow">Select</button>
                         </div>
                     </div>
                     <div id="info-${service.id}" class="hidden px-4 pb-4 text-sm text-gray-500 border-t border-gray-50 pt-3">
@@ -400,7 +484,6 @@
         }
         buildAccordion();
 
-        // View Toggles
         function switchView(viewId) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('view-active'));
             document.getElementById(viewId).classList.add('view-active');
@@ -421,7 +504,6 @@
             window.scrollTo(0,0);
         }
 
-        // Dropdown Toggle
         function toggleInfo(id) {
             const el = document.getElementById(id);
             if(el.classList.contains('hidden')) {
@@ -431,7 +513,6 @@
             }
         }
 
-        // Form Builder
         function selectCategory(categoryName) {
             document.getElementById('selectedCategoryTitle').innerText = categoryName;
             const container = document.getElementById('subServicesContainer');
@@ -471,7 +552,6 @@
             switchView('portfolio');
         }
 
-        // Mock System
         function mockLogin() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('dashboardScreen').classList.remove('hidden'); }
         function mockLogout() { document.getElementById('dashboardScreen').classList.add('hidden'); document.getElementById('loginScreen').classList.remove('hidden'); }
         function requestAction(type) {
@@ -479,7 +559,6 @@
             else { showModal("Update Requested", "We will contact you to coordinate schedule changes."); }
         }
 
-        // Modals
         function showModal(title, text) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalText').innerText = text;
