@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priya Seva Center | Premium Care in Kolkata</title>
+    <title>Priya Seva Center | Premium Local Services in Kolkata</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,10 +23,8 @@
         }
     </script>
     <style>
-        /* Smooth transitions for our app views */
         .view-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
         .view-active { display: block; opacity: 1; }
-        .hide-scroll::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-brandBg text-gray-800 font-sans antialiased pb-20 md:pb-0">
@@ -52,7 +50,7 @@
             </div>
         </div>
         <div class="flex space-x-8 font-semibold text-sm">
-            <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
+            <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Services</button>
             <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Track Services</button>
             <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md">Book Now</button>
         </div>
@@ -62,152 +60,227 @@
 
         <section id="portfolio" class="view-section view-active">
             
-            <div class="bg-white px-6 py-12 md:py-20 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
-                <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Premium Home Care</span>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-6">
-                    Professional care for your loved ones, <br class="hidden md:block"><span class="text-brandRed">right here in Kolkata.</span>
+            <div class="bg-white px-6 py-12 md:py-16 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
+                <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Trusted Domestic & Healthcare Agency</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-4">
+                    Reliable professional support, <br class="hidden md:block"><span class="text-brandRed">tailored for your home.</span>
                 </h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
-                <div class="w-full h-64 md:h-96 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 mb-8 overflow-hidden shadow-inner border border-gray-100">
-                    <div class="text-center">
-                        <i class="fa-solid fa-image text-4xl mb-2"></i>
-                        <p class="text-sm">[ Insert high-quality photo of your staff/caregivers here ]</p>
-                    </div>
-                </div>
-                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-800 transition">
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Skip the stress of finding verified help. We provide trained, professional staff across Kolkata with seamless tracking and transparent management.</p>
+                <button onclick="startBookingFlow()" class="bg-brandNavy text-white font-bold py-3.5 px-8 rounded-full shadow-lg hover:bg-gray-800 transition">
                     Book a Service Now
                 </button>
             </div>
 
             <div class="px-6 max-w-5xl mx-auto mb-16">
-                <h3 class="text-xl font-bold text-brandNavy mb-6 uppercase tracking-wide">Our Expertise</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
-                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-user-nurse"></i></div>
-                        <div>
-                            <h4 class="font-bold text-brandNavy text-lg">Nurse & Aya Services</h4>
-                            <p class="text-sm text-gray-500 mt-1">24/7 bedside assistance, feeding, and daily living support.</p>
-                        </div>
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-brandNavy">Our Core Solutions</h3>
+                    <p class="text-sm text-gray-500 mt-1">Explore our 7 specialized pillars of home and personal care</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-broom"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">1. Maid / Aya Services</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>Professional Cooking</li>
+                            <li>Thorough House Cleaning</li>
+                            <li>Laundry & Ironing</li>
+                            <li>Basic Elder & Child Caregiving</li>
+                        </ul>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
-                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-person-walking"></i></div>
-                        <div>
-                            <h4 class="font-bold text-brandNavy text-lg">Physiotherapy</h4>
-                            <p class="text-sm text-gray-500 mt-1">Post-op recovery and mobility exercises at home.</p>
-                        </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-user-nurse"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">2. Nurse / Elder Care</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>12-Hour & 24-Hour Bedside Care</li>
+                            <li>Post-Operative Recovery</li>
+                            <li>Medication & Vitals Monitoring</li>
+                            <li>Compassionate Companionship</li>
+                        </ul>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
-                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-hands-holding-child"></i></div>
-                        <div>
-                            <h4 class="font-bold text-brandNavy text-lg">Elderly Care</h4>
-                            <p class="text-sm text-gray-500 mt-1">Compassionate companionship and medical monitoring.</p>
-                        </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">3. Physiotherapy & Checks</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>Orthopedic & Neuro Rehab</li>
+                            <li>Mobility & Posture Training</li>
+                            <li>At-Home Blood Pressure & Sugar</li>
+                            <li>Doorstep ECG Assessments</li>
+                        </ul>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-start space-x-4">
-                        <div class="bg-blue-50 text-brandNavy w-12 h-12 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-stethoscope"></i></div>
-                        <div>
-                            <h4 class="font-bold text-brandNavy text-lg">Specialized Plans</h4>
-                            <p class="text-sm text-gray-500 mt-1">ECG, BP monitoring, and wound dressing at your doorstep.</p>
-                        </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-baby"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">4. Babysitters</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>Newborn Routine Management</li>
+                            <li>Toddler Engagement & Play</li>
+                            <li>School Drop-off & Pick-up</li>
+                            <li>Daytime & On-Demand Sitting</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-dog"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">5. Pet Sitters</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>Daily Dog Walking Routes</li>
+                            <li>Timely Feeding & Water Hydration</li>
+                            <li>Basic Grooming & Bath Support</li>
+                            <li>Overnight In-House Pet Sitting</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-car"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">6. Professional Drivers</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>Daily Office/Commute Driving</li>
+                            <li>Monthly Permanent Placement</li>
+                            <li>Outstation & Weekend Trips</li>
+                            <li>Luxury/Automatic Car Specialists</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition lg:col-span-3 lg:max-w-md lg:mx-auto lg:w-full">
+                        <div class="bg-rose-50 text-brandRed w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4 class="font-bold text-brandNavy text-lg mb-2">7. Security Guards</h4>
+                        <ul class="text-sm text-gray-500 space-y-1.5 list-inside list-disc">
+                            <li>Residential Complex Protection</li>
+                            <li>Commercial & Office Security</li>
+                            <li>Dedicated Night Patrol Shifts</li>
+                            <li>Vetted, Gate Management Experts</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="booking" class="view-section px-6 py-8 max-w-lg mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-extrabold text-brandNavy">Request Care</h2>
-                <p class="text-sm text-gray-500 mt-2">Fill this out, and our manager will call you shortly to confirm details.</p>
-            </div>
-
-            <form id="bookingForm" onsubmit="handleBooking(event)" class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-gray-100 space-y-5">
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Your Name</label>
-                    <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy focus:ring-1 focus:ring-brandNavy transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Phone Number</label>
-                    <input type="tel" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy focus:ring-1 focus:ring-brandNavy transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Service Needed</label>
-                    <select required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition appearance-none">
-                        <option value="" disabled selected>Select a service...</option>
-                        <option>Maid / Aya Service</option>
-                        <option>Nurse (12 Hour / 24 Hour)</option>
-                        <option>Physiotherapy</option>
-                        <option>Other Medical Needs</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Preferred Start Date</label>
-                    <input type="date" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition text-gray-700">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Location / Pin Code</label>
-                    <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+        <section id="booking" class="view-section px-6 py-8 max-w-xl mx-auto">
+            
+            <div id="bookingStep1">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-extrabold text-brandNavy">Select a Main Category</h2>
+                    <p class="text-sm text-gray-500 mt-2">Which professional service do you want to book today?</p>
                 </div>
                 
-                <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition mt-6">
-                    Submit Request
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button onclick="selectCategory('Maid / Aya')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-broom"></i></div>
+                        <span class="font-bold text-brandNavy">Maid / Aya</span>
+                    </button>
+                    <button onclick="selectCategory('Nurse / Elder Care')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-user-nurse"></i></div>
+                        <span class="font-bold text-brandNavy">Nurse / Elder Care</span>
+                    </button>
+                    <button onclick="selectCategory('Physiotherapy / Health Check-ups')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <span class="font-bold text-brandNavy">Physiotherapy / Checks</span>
+                    </button>
+                    <button onclick="selectCategory('Babysitters')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-baby"></i></div>
+                        <span class="font-bold text-brandNavy">Babysitters</span>
+                    </button>
+                    <button onclick="selectCategory('Pet Sitters')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-dog"></i></div>
+                        <span class="font-bold text-brandNavy">Pet Sitters</span>
+                    </button>
+                    <button onclick="selectCategory('Drivers')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-car"></i></div>
+                        <span class="font-bold text-brandNavy">Drivers</span>
+                    </button>
+                    <button onclick="selectCategory('Security Guard')" class="bg-white p-5 text-left rounded-2xl border border-gray-200 hover:border-brandNavy transition flex items-center space-x-4 shadow-sm sm:col-span-2">
+                        <div class="text-xl text-brandRed"><i class="fa-solid fa-shield-halved"></i></div>
+                        <span class="font-bold text-brandNavy">Security Guard</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="bookingStep2" class="hidden">
+                <button onclick="goBackToCategories()" class="text-xs font-bold text-brandRed uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Back to Categories
                 </button>
-            </form>
+                
+                <div class="mb-6">
+                    <h2 class="text-2xl font-extrabold text-brandNavy" id="selectedCategoryTitle">Service Details</h2>
+                    <p class="text-sm text-gray-500 mt-1">Select sub-services and input your schedule choices.</p>
+                </div>
+
+                <form id="bookingForm" onsubmit="handleBooking(event)" class="bg-white p-6 rounded-3xl shadow-md border border-gray-100 space-y-5">
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Your Full Name</label>
+                        <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Mobile Number</label>
+                        <input type="tel" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Select Options Needed</label>
+                        <div id="subServicesContainer" class="space-y-2.5 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Preferred Start Date</label>
+                            <input type="date" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Pin Code / Location</label>
+                            <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition mt-4">
+                        Confirm & Request Booking
+                    </button>
+                </form>
+            </div>
         </section>
 
         <section id="tracking" class="view-section px-6 py-8 max-w-lg mx-auto">
-            
             <div id="loginScreen" class="bg-white p-8 rounded-3xl shadow-md border border-gray-100 text-center mt-10">
-                <div class="bg-blue-50 text-brandNavy w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div class="bg-rose-50 text-brandRed w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
                 <h2 class="text-2xl font-bold text-brandNavy mb-2">Track Your Services</h2>
-                <p class="text-sm text-gray-500 mb-6">Enter your registered phone number to view ongoing services and invoices.</p>
+                <p class="text-sm text-gray-500 mb-6">Enter your registered mobile number to manage ongoing tasks and view historical billing metrics.</p>
                 <input type="tel" placeholder="e.g. 9876543210" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-center text-lg tracking-widest focus:outline-none focus:border-brandNavy mb-4">
-                <button onclick="mockLogin()" class="w-full bg-brandRed text-white font-bold py-4 rounded-xl shadow-md hover:bg-red-700 transition">
-                    View My Dashboard
+                <button onclick="mockLogin()" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-md hover:bg-gray-800 transition">
+                    View My Portal
                 </button>
             </div>
 
             <div id="dashboardScreen" class="hidden">
                 <div class="flex justify-between items-end mb-6">
                     <div>
-                        <h2 class="text-2xl font-extrabold text-brandNavy">My Dashboard</h2>
-                        <p class="text-sm text-gray-500">Welcome back, Client.</p>
+                        <h2 class="text-2xl font-extrabold text-brandNavy">My Active Portal</h2>
+                        <p class="text-sm text-gray-500">Review, update, or edit your service history cleanly.</p>
                     </div>
-                    <button onclick="mockLogout()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Log Out</button>
+                    <button onclick="mockLogout()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Sign Out</button>
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
                     <div class="bg-green-50 px-6 py-3 border-b border-gray-100 flex justify-between items-center">
-                        <span class="text-xs font-bold text-green-700 uppercase tracking-wider"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Active Ongoing</span>
-                        <span class="text-xs font-bold text-gray-500">ID: #PSC-8842</span>
+                        <span class="text-xs font-bold text-green-700 uppercase tracking-wider"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Active Schedule</span>
+                        <span class="text-xs font-bold text-gray-500">ID: #PSC-4091</span>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-brandNavy mb-1">12-Hour Aya Service</h3>
-                        <p class="text-sm text-gray-500 mb-4">Daily • 8:00 AM to 8:00 PM</p>
+                        <h3 class="text-xl font-bold text-brandNavy mb-1">Regular Maid Service</h3>
+                        <p class="text-sm text-gray-500 mb-2">Selected: Cooking, House Cleaning</p>
+                        <p class="text-xs text-gray-400">Status: Running continuously unless requested to stop.</p>
                         
                         <div class="flex space-x-3 mt-6 border-t border-gray-100 pt-4">
                             <button onclick="requestAction('edit')" class="flex-1 bg-gray-50 hover:bg-gray-100 text-brandNavy font-semibold py-2 rounded-lg text-sm transition border border-gray-200">
-                                <i class="fa-solid fa-pen mr-2"></i>Edit
+                                <i class="fa-solid fa-pen mr-2"></i>Change Schedule
                             </button>
                             <button onclick="requestAction('cancel')" class="flex-1 bg-red-50 hover:bg-red-100 text-brandRed font-semibold py-2 rounded-lg text-sm transition border border-red-100">
-                                <i class="fa-solid fa-xmark mr-2"></i>Cancel
+                                <i class="fa-solid fa-xmark mr-2"></i>Cancel Service
                             </button>
                         </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 rounded-3xl border border-gray-200 overflow-hidden opacity-75">
-                    <div class="px-6 py-3 border-b border-gray-200 flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Completed</span>
-                        <span class="text-xs font-bold text-gray-500">May 2026</span>
-                    </div>
-                    <div class="p-6 flex justify-between items-center">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-700">Physiotherapy (10 Sessions)</h3>
-                            <p class="text-xs text-gray-500">Paid in full</p>
-                        </div>
-                        <button class="bg-white border border-gray-300 text-gray-600 px-3 py-2 rounded-lg text-xs font-bold hover:bg-gray-100">
-                            <i class="fa-solid fa-file-arrow-down mr-1"></i> Invoice
-                        </button>
                     </div>
                 </div>
             </div>
@@ -218,23 +291,29 @@
     <div id="actionModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
             <div class="bg-green-100 text-green-500 w-16 h-16 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fa-solid fa-check"></i></div>
-            <h3 class="text-xl font-bold text-brandNavy mb-2" id="modalTitle">Request Sent</h3>
-            <p class="text-gray-500 text-sm mb-6" id="modalText">We have received your request. Our admin team will contact you shortly to confirm the updates.</p>
-            <button onclick="closeModal()" class="w-full bg-gray-100 text-brandNavy font-bold py-3 rounded-xl hover:bg-gray-200 transition">Understood</button>
+            <h3 class="text-xl font-bold text-brandNavy mb-2" id="modalTitle">Request Logged</h3>
+            <p class="text-gray-500 text-sm mb-6" id="modalText">Message body context placeholders here.</p>
+            <button onclick="closeModal()" class="w-full bg-gray-100 text-brandNavy font-bold py-3 rounded-xl hover:bg-gray-200 transition">Close</button>
         </div>
     </div>
 
     <script>
-        // Switch between Home, Book, and Track views
+        // Data mapping for sub-services subcategories
+        const subServiceData = {
+            "Maid / Aya": ["Cooking Specialist", "Full House Cleaning", "Laundry & Ironing Service", "Basic Elder Sitting", "Basic Child Assistance"],
+            "Nurse / Elder Care": ["12-Hour Night/Day Nurse", "24-Hour Critical Care Support", "Post-Surgical Nursing", "Injections & Daily Vitals Tracking"],
+            "Physiotherapy / Health Check-ups": ["Orthopedic Rehabilitation", "Neurological Recovery Session", "Full Home Blood Sugar & BP Checkup", "Doorstep ECG Administration"],
+            "Babysitters": ["Newborn Care Routine", "Toddler Play & Early Learning", "School Escort & Safety Monitoring", "On-Demand Evening Sitting"],
+            "Pet Sitters": ["Dog Walking & Exercise", "Pet Meal Feeding & Water Tracking", "Home Grooming Assist", "Overnight Stay Pet Monitoring"],
+            "Drivers": ["Daily Work Commute", "Monthly Permanent Booking", "Outstation/Long-Distance Trip", "Luxury Car Handling Specialist"],
+            "Security Guard": ["Gate Management Security", "Night Shift Property Patrol", "Commercial Premise Officer", "Event Protection Support"]
+        };
+
+        // Navigation state managers
         function switchView(viewId) {
-            // Hide all views
-            document.querySelectorAll('.view-section').forEach(el => {
-                el.classList.remove('view-active');
-            });
-            // Show target view
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('view-active'));
             document.getElementById(viewId).classList.add('view-active');
             
-            // Update Mobile Nav styling
             const navIds = ['portfolio', 'booking', 'tracking'];
             navIds.forEach(id => {
                 const btn = document.getElementById('nav-' + id);
@@ -251,33 +330,72 @@
             window.scrollTo(0,0);
         }
 
-        // Handle Booking Form Submit
-        function handleBooking(e) {
-            e.preventDefault();
-            showModal("Booking Received!", "We will call you within 30 minutes to finalize your care plan.");
-            e.target.reset();
+        // 2-Step Form Process Mechanics
+        function startBookingFlow() {
+            switchView('booking');
+            goBackToCategories();
         }
 
-        // Mock Dashboard Logic
+        function selectCategory(categoryName) {
+            document.getElementById('selectedCategoryTitle').innerText = categoryName;
+            
+            // Build sub-services checkbox lists dynamically
+            const container = document.getElementById('subServicesContainer');
+            container.innerHTML = ''; 
+            
+            const list = subServiceData[categoryName] || [];
+            list.forEach(item => {
+                const label = document.createElement('label');
+                label.className = "flex items-center space-x-3 p-2 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition";
+                label.innerHTML = `
+                    <input type="checkbox" value="${item}" class="rounded text-brandRed focus:ring-brandRed w-4 h-4">
+                    <span class="text-sm text-gray-700 font-medium">${item}</span>
+                `;
+                container.appendChild(label);
+            });
+
+            // Transition UI View steps
+            document.getElementById('bookingStep1').classList.add('hidden');
+            document.getElementById('bookingStep2').classList.remove('hidden');
+        }
+
+        function goBackToCategories() {
+            document.getElementById('bookingStep2').classList.add('hidden');
+            document.getElementById('bookingStep1').classList.remove('hidden');
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            // Capture checked entries
+            const checkedBoxes = document.querySelectorAll('#subServicesContainer input[type="checkbox"]:checked');
+            if (checkedBoxes.length === 0) {
+                alert("Please pick at least one option before submitting your request.");
+                return;
+            }
+            showModal("Booking Request Created", "We received your category preferences. Your data state is logged; our manager will call you shortly to align schedules.");
+            e.target.reset();
+            goBackToCategories();
+            switchView('portfolio');
+        }
+
+        // Mock Screen Simulators
         function mockLogin() {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('dashboardScreen').classList.remove('hidden');
         }
-
         function mockLogout() {
             document.getElementById('dashboardScreen').classList.add('hidden');
             document.getElementById('loginScreen').classList.remove('hidden');
         }
-
         function requestAction(type) {
             if(type === 'cancel') {
-                showModal("Cancellation Requested", "Your request has been flagged in our system. We will call you to confirm the cancellation date.");
+                showModal("Cancellation Registered", "Your cancellation intent has been recorded in the database. Our team will perform a required verification call shortly.");
             } else {
-                showModal("Change Requested", "Our team has been notified. We will call you shortly to update your service schedule.");
+                showModal("Schedule Update Requested", "Modification alert transmitted. We will contact you to coordinate worker realignment coordinates.");
             }
         }
 
-        // Modal Logic
+        // Generic Modal Components
         function showModal(title, text) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalText').innerText = text;
@@ -285,7 +403,6 @@
             modal.classList.remove('hidden');
             setTimeout(() => { document.getElementById('modalContent').classList.remove('scale-95'); document.getElementById('modalContent').classList.add('scale-100'); }, 10);
         }
-
         function closeModal() {
             document.getElementById('modalContent').classList.remove('scale-100');
             document.getElementById('modalContent').classList.add('scale-95');
