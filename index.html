@@ -25,6 +25,33 @@
     <style>
         .view-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
         .view-active { display: block; opacity: 1; }
+
+        /* --- NEW SLIDESHOW CSS --- */
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            transform: translateX(100%); /* Starts off-screen right */
+            transition: transform 0.8s ease-in-out;
+            z-index: 1;
+        }
+        .hero-slide.active {
+            transform: translateX(0); /* Moves to center */
+            z-index: 2;
+        }
+        .hero-slide.exit {
+            transform: translateX(-100%); /* Exits to the left */
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        /* Only fades in the text AFTER the slide finishes moving */
+        .hero-slide.active .hero-overlay {
+            opacity: 1;
+            transition-delay: 0.8s; 
+        }
     </style>
 </head>
 <body class="bg-brandBg text-gray-800 font-sans antialiased pb-20 md:pb-0">
@@ -60,20 +87,115 @@
 
         <section id="portfolio" class="view-section view-active">
             
-            <div class="bg-white px-6 py-12 md:py-20 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
+            <div class="bg-white px-6 py-12 md:py-16 max-w-5xl mx-auto text-center rounded-b-3xl shadow-sm mb-8">
                 <span class="bg-red-50 text-brandRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Premium Home Care</span>
                 <h2 class="text-4xl md:text-5xl font-extrabold text-brandNavy leading-tight tracking-tight mb-6">
                     Professional care for your loved ones, <br class="hidden md:block"><span class="text-brandRed">right here in Kolkata.</span>
                 </h2>
                 <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
                 
-                <div class="w-full h-64 md:h-96 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 mb-8 overflow-hidden shadow-inner border border-gray-100">
-                    <div class="text-center">
-                        <i class="fa-solid fa-image text-4xl mb-2"></i>
-                        <p class="text-sm mt-2">[ Insert high-quality photo of your staff/caregivers here ]</p>
+                <div class="relative w-full h-72 md:h-[450px] bg-gray-900 rounded-2xl overflow-hidden shadow-xl mb-8 border border-gray-200">
+                    
+                    <div class="hero-slide active">
+                        <img src="maid.png" alt="Maid Services" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Maid / Aya Services</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Thorough Cleaning</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Professional Cooking</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> 100% Background Verified</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="hero-slide">
+                        <img src="nurse.png" alt="Nurse Care" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Nurse / Elder Care</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> 12/24 Hr Bedside Care</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Daily Vitals Monitoring</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Compassionate Support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-slide">
+                        <img src="health.png" alt="Physiotherapy" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Physiotherapy</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Orthopedic Rehab</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Mobility Training</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> At-Home Sessions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-slide">
+                        <img src="babysitter.png" alt="Babysitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Babysitters</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Newborn Care</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Toddler Engagement</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Safe & Reliable</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-slide">
+                        <img src="petsitter.png" alt="Pet Sitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Pet Sitters</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Daily Walking</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Feeding Routines</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Compassionate Care</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-slide">
+                        <img src="driver.png" alt="Professional Driver" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Professional Drivers</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Corporate & Commute</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Luxury Car Handling</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Punctual & Safe</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-slide">
+                        <img src="security.png" alt="Security Guard" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute right-0 top-0 bottom-0 w-[90%] md:w-[50%] bg-gradient-to-l from-black/95 via-black/80 to-transparent flex flex-col justify-center px-6 md:px-12">
+                            <div class="ml-auto w-full max-w-[280px]">
+                                <h3 class="text-white font-bold text-xl md:text-2xl mb-3 border-l-4 border-brandRed pl-3">Security Guards</h3>
+                                <ul class="text-gray-200 text-sm space-y-2">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Gate Management</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Night Patrols</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Vetted Personnel</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-800 transition">
+                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-800 transition text-lg">
                     Book a Service Now
                 </button>
             </div>
@@ -220,6 +342,27 @@
     </div>
 
     <script>
+        // --- NEW SLIDESHOW JAVASCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.hero-slide');
+            
+            if(slides.length > 0) {
+                setInterval(() => {
+                    const prev = currentSlide;
+                    currentSlide = (currentSlide + 1) % slides.length;
+
+                    // Move old slide out to the left
+                    slides[prev].classList.replace('active', 'exit');
+                    
+                    // Reset new slide immediately to the right side, then bring it in
+                    slides[currentSlide].classList.remove('exit'); 
+                    slides[currentSlide].classList.add('active');
+
+                }, 10000); // 10 seconds per slide
+            }
+        });
+
         // Data Configuration for 7 Services
         const servicesData = [
             { id: 1, name: "Maid / Aya", icon: "fa-broom", desc: "Professional cooking, thorough cleaning, laundry, and basic household assistance tailored to your daily needs.", subs: ["Cooking Specialist", "Full House Cleaning", "Laundry & Ironing Service", "Basic Elder Sitting", "Basic Child Assistance"] },
