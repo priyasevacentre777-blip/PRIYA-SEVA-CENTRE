@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -48,7 +50,6 @@
             position: absolute;
             inset: 0;
             z-index: 1;
-            /* Transform is handled dynamically by JS to prevent rewinding */
         }
         
         .hero-overlay {
@@ -56,7 +57,6 @@
             transition: opacity 0.6s ease-in-out;
         }
         
-        /* Only fades in the text AFTER the slide finishes moving (0.8s) */
         .hero-slide.active .hero-overlay {
             opacity: 1;
             transition-delay: 0.8s; 
@@ -73,7 +73,7 @@
             <i class="fa-solid fa-calendar-plus text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Book</span>
         </button>
         <button onclick="switchView('tracking')" id="nav-tracking" class="flex flex-col items-center text-gray-400 w-1/3 hover:text-brandNavy transition">
-            <i class="fa-solid fa-user-clock text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Track</span>
+            <i class="fa-solid fa-table-columns text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Dashboard</span>
         </button>
     </nav>
 
@@ -89,7 +89,7 @@
         </div>
         <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
             <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
-            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Track Services</button>
+            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Dashboard</button>
             <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md animate-pulse-glow">Book Now</button>
         </div>
     </header>
@@ -115,7 +115,7 @@
                     </button>
 
                     <div class="hero-slide active">
-                        <img src="maid.jpg" alt="Maid Services" class="w-full h-full object-cover">
+                        <img src="maid.png" alt="Maid Services" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="nurse.jpg" alt="Nurse Care" class="w-full h-full object-cover">
+                        <img src="nurse.png" alt="Nurse Care" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -149,7 +149,7 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="health.jpg" alt="Physiotherapy" class="w-full h-full object-cover">
+                        <img src="health.png" alt="Physiotherapy" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -166,7 +166,7 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="babysitter.jpg" alt="Babysitter" class="w-full h-full object-cover">
+                        <img src="babysitter.png" alt="Babysitter" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -183,7 +183,7 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="petsitter.jpg" alt="Pet Sitter" class="w-full h-full object-cover">
+                        <img src="petsitter.png" alt="Pet Sitter" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -200,7 +200,7 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="driver.jpg" alt="Professional Driver" class="w-full h-full object-cover">
+                        <img src="driver.png" alt="Professional Driver" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -217,7 +217,7 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="security.jpg" alt="Security Guard" class="w-full h-full object-cover">
+                        <img src="security.png" alt="Security Guard" class="w-full h-full object-cover">
                         <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
                             <div class="md:ml-auto w-full md:max-w-[280px]">
                                 <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
@@ -295,11 +295,11 @@
                 <form id="bookingForm" onsubmit="handleBooking(event)" class="bg-white p-6 rounded-3xl shadow-md border border-gray-100 space-y-5">
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Your Full Name</label>
-                        <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                        <input type="text" id="bkName" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Mobile Number</label>
-                        <input type="tel" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                        <input type="tel" id="bkPhone" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Select Options Needed</label>
@@ -308,14 +308,14 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Preferred Start Date</label>
-                            <input type="date" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition text-gray-700">
+                            <input type="date" id="bkDate" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition text-gray-700">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Pin Code / Location</label>
-                            <input type="text" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
+                            <input type="text" id="bkPin" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandNavy transition">
                         </div>
                     </div>
-                    <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition mt-4 animate-pulse-glow">
+                    <button type="submit" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-lg hover:bg-brandRed transition-colors duration-300 mt-4 animate-pulse-glow">
                         Confirm & Request Booking
                     </button>
                 </form>
@@ -323,41 +323,59 @@
         </section>
 
         <section id="tracking" class="view-section px-6 py-8 max-w-lg mx-auto">
-            <div id="loginScreen" class="bg-white p-8 rounded-3xl shadow-md border border-gray-100 text-center mt-10">
-                <div class="bg-rose-50 text-brandRed w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                <h2 class="text-2xl font-bold text-brandNavy mb-2">Track Your Services</h2>
-                <p class="text-sm text-gray-500 mb-6">Enter your registered mobile number to manage ongoing tasks and view historical billing metrics.</p>
-                <input type="tel" placeholder="e.g. 9876543210" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-center text-lg tracking-widest focus:outline-none focus:border-brandNavy mb-4">
-                <button onclick="mockLogin()" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-md hover:bg-gray-800 transition">
-                    View My Portal
-                </button>
+            
+            <div id="loginScreen" class="bg-white p-8 rounded-3xl shadow-md border border-gray-100">
+                <div class="text-center mb-6">
+                    <div class="bg-rose-50 text-brandRed w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-user-lock"></i></div>
+                    <h2 class="text-2xl font-bold text-brandNavy">Client Portal</h2>
+                    <p class="text-sm text-gray-500 mt-1">Sign in or register to track your services.</p>
+                </div>
+
+                <div class="flex bg-gray-100 p-1 rounded-xl mb-6">
+                    <button onclick="toggleAuthMode('login')" id="tabLogin" class="flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy">Log In</button>
+                    <button onclick="toggleAuthMode('signup')" id="tabSignup" class="flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy">Sign Up</button>
+                </div>
+
+                <div class="space-y-4">
+                    <input type="text" id="authName" placeholder="Full Name" class="hidden w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
+                    <input type="tel" id="authPhone" placeholder="Mobile Number" class="hidden w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
+                    <input type="email" id="authEmail" placeholder="Email Address" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
+                    <input type="password" id="authPassword" placeholder="Password" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
+                    
+                    <button onclick="handleAuth()" id="authBtn" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-md hover:bg-gray-800 transition">
+                        Access Dashboard
+                    </button>
+                </div>
             </div>
 
             <div id="dashboardScreen" class="hidden">
                 <div class="flex justify-between items-end mb-6">
                     <div>
-                        <h2 class="text-2xl font-extrabold text-brandNavy">My Active Portal</h2>
-                        <p class="text-sm text-gray-500">Review, update, or edit your service history cleanly.</p>
+                        <h2 class="text-2xl font-extrabold text-brandNavy" id="userWelcome">My Dashboard</h2>
+                        <p class="text-sm text-gray-500">Manage schedules and billing.</p>
                     </div>
-                    <button onclick="mockLogout()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Sign Out</button>
+                    <button onclick="logOut()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Sign Out</button>
                 </div>
-                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
-                    <div class="bg-green-50 px-6 py-3 border-b border-gray-100 flex justify-between items-center">
-                        <span class="text-xs font-bold text-green-700 uppercase tracking-wider"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Active Schedule</span>
-                        <span class="text-xs font-bold text-gray-500">ID: #PSC-4091</span>
+                
+                <div id="activeBookingsContainer">
+                    <p class="text-center text-gray-400 py-10">No active bookings found.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 mt-6">
+                    <h3 class="text-sm font-bold text-brandNavy uppercase tracking-wider mb-4 border-l-4 border-brandRed pl-2">Service Calendar</h3>
+                    <div class="flex justify-between items-center text-xs text-gray-500 mb-2 font-bold">
+                        <span>Sun</span><span>Mon</span><span>Tue</span><span class="text-brandRed">Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-brandNavy mb-1">Regular Maid Service</h3>
-                        <p class="text-sm text-gray-500 mb-2">Selected: Cooking, House Cleaning</p>
-                        <div class="flex space-x-3 mt-6 border-t border-gray-100 pt-4">
-                            <button onclick="requestAction('edit')" class="flex-1 bg-gray-50 hover:bg-gray-100 text-brandNavy font-semibold py-2 rounded-lg text-sm transition border border-gray-200">
-                                <i class="fa-solid fa-pen mr-2"></i>Change
-                            </button>
-                            <button onclick="requestAction('cancel')" class="flex-1 bg-red-50 hover:bg-red-100 text-brandRed font-semibold py-2 rounded-lg text-sm transition border border-red-100">
-                                <i class="fa-solid fa-xmark mr-2"></i>Cancel
-                            </button>
-                        </div>
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400">14</div>
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400">15</div>
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400">16</div>
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brandRed text-white shadow-md">17</div>
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-brandRed">18</div>
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-brandRed">19</div>
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-brandRed">20</div>
                     </div>
+                    <p class="text-xs text-center text-gray-400 mt-4"><i class="fa-solid fa-circle text-[8px] text-brandRed mr-1"></i> Highlights indicate scheduled service days.</p>
                 </div>
             </div>
         </section>
@@ -374,12 +392,23 @@
     </div>
 
     <script>
-        // --- BULLETPROOF INFINITE SLIDESHOW ENGINE ---
+        // ==========================================
+        // 1. CONFIGURATION & SECRETS
+        // ==========================================
+        const SUPABASE_URL = "YOUR_SUPABASE_URL_HERE"; 
+        const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY_HERE";
+        const WEB_APP_URL  = "YOUR_GOOGLE_WEB_APP_URL_HERE";
+        const WHATSAPP_NUM = "919876543210"; // PUT YOUR NUMBER HERE
+
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // ==========================================
+        // 2. SLIDESHOW LOGIC
+        // ==========================================
         let currentSlide = 0;
         let slideInterval;
         const slides = document.querySelectorAll('.hero-slide');
 
-        // Setup initial slide positions invisibly
         function initSlides() {
             slides.forEach((slide, index) => {
                 if(index !== 0) {
@@ -392,70 +421,36 @@
             startInterval();
         }
 
-        // Logic to move between slides without "rewind" glitch
         function goToSlide(newIndex, direction = 'next') {
             if (newIndex === currentSlide) return;
-
-            const current = slides[currentSlide];
-            const next = slides[newIndex];
-
-            // Setup next slide position instantly (no animation)
+            const current = slides[currentSlide]; const next = slides[newIndex];
             next.style.transition = 'none';
-            if (direction === 'next') {
-                next.style.transform = 'translateX(100%)';
-                current.style.transform = 'translateX(-100%)'; // Move old out
-            } else {
-                next.style.transform = 'translateX(-100%)';
-                current.style.transform = 'translateX(100%)'; // Move old out
-            }
-
-            // Force browser reflow to register instant position
+            if (direction === 'next') { next.style.transform = 'translateX(100%)'; current.style.transform = 'translateX(-100%)'; } 
+            else { next.style.transform = 'translateX(-100%)'; current.style.transform = 'translateX(100%)'; }
             void next.offsetWidth; 
-
-            // Enable animations and glide into center
             current.style.transition = 'transform 0.8s ease-in-out';
             next.style.transition = 'transform 0.8s ease-in-out';
             next.style.transform = 'translateX(0)';
-
-            // Update Overlay states
-            current.classList.remove('active');
-            next.classList.add('active');
-            
+            current.classList.remove('active'); next.classList.add('active');
             currentSlide = newIndex;
         }
 
-        function slideNext() {
-            let nextIndex = (currentSlide + 1) % slides.length;
-            goToSlide(nextIndex, 'next');
-            resetInterval();
-        }
-
-        function slidePrev() {
-            let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(prevIndex, 'prev');
-            resetInterval();
-        }
-
-        function startInterval() {
-            slideInterval = setInterval(slideNext, 10000);
-        }
-
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-
+        function slideNext() { let nextIndex = (currentSlide + 1) % slides.length; goToSlide(nextIndex, 'next'); resetInterval(); }
+        function slidePrev() { let prevIndex = (currentSlide - 1 + slides.length) % slides.length; goToSlide(prevIndex, 'prev'); resetInterval(); }
+        function startInterval() { slideInterval = setInterval(slideNext, 10000); }
+        function resetInterval() { clearInterval(slideInterval); startInterval(); }
         document.addEventListener('DOMContentLoaded', initSlides);
 
-
-        // --- EXISTING BOOKING & DATA LOGIC ---
+        // ==========================================
+        // 3. BOOKING, ACCORDION & WHATSAPP
+        // ==========================================
         const servicesData = [
-            { id: 1, name: "Maid / Aya", icon: "fa-broom", desc: "Professional cooking, thorough cleaning, laundry, and basic household assistance tailored to your daily needs.", subs: ["Cooking Specialist", "Full House Cleaning", "Laundry & Ironing Service", "Basic Elder Sitting", "Basic Child Assistance"] },
-            { id: 2, name: "Nurse / Elder Care", icon: "fa-user-nurse", desc: "Compassionate bedside care, post-operative support, and daily medical monitoring for your loved ones.", subs: ["12-Hour Night/Day Nurse", "24-Hour Critical Care Support", "Post-Surgical Nursing", "Injections & Daily Vitals Tracking"] },
-            { id: 3, name: "Physiotherapy / Health Check-ups", icon: "fa-heart-pulse", desc: "At-home physical rehabilitation, mobility training, and routine door-step health check-ups.", subs: ["Orthopedic Rehabilitation", "Neurological Recovery Session", "Full Home Blood Sugar & BP Checkup", "Doorstep ECG Administration"] },
+            { id: 1, name: "Maid / Aya", icon: "fa-broom", desc: "Professional cooking, thorough cleaning, laundry, and basic household assistance.", subs: ["Cooking Specialist", "Full House Cleaning", "Laundry & Ironing Service", "Basic Elder Sitting", "Basic Child Assistance"] },
+            { id: 2, name: "Nurse / Elder Care", icon: "fa-user-nurse", desc: "Compassionate bedside care, post-operative support, and daily medical monitoring.", subs: ["12-Hour Night/Day Nurse", "24-Hour Critical Care Support", "Post-Surgical Nursing", "Injections & Daily Vitals Tracking"] },
+            { id: 3, name: "Physiotherapy / Health Check-ups", icon: "fa-heart-pulse", desc: "At-home physical rehabilitation, mobility training, and routine health check-ups.", subs: ["Orthopedic Rehabilitation", "Neurological Recovery Session", "Full Home Blood Sugar & BP Checkup", "Doorstep ECG Administration"] },
             { id: 4, name: "Babysitters", icon: "fa-baby", desc: "Safe, engaging, and responsible care for newborns, toddlers, and young children.", subs: ["Newborn Care Routine", "Toddler Play & Early Learning", "School Escort & Safety Monitoring", "On-Demand Evening Sitting"] },
             { id: 5, name: "Pet Sitters", icon: "fa-dog", desc: "Reliable dog walking, feeding routines, grooming assistance, and overnight pet care.", subs: ["Dog Walking & Exercise", "Pet Meal Feeding & Water Tracking", "Home Grooming Assist", "Overnight Stay Pet Monitoring"] },
-            { id: 6, name: "Drivers", icon: "fa-car", desc: "Professional drivers for daily commutes, monthly placement, outstation trips, and luxury vehicles.", subs: ["Daily Work Commute", "Monthly Permanent Booking", "Outstation/Long-Distance Trip", "Luxury Car Handling Specialist"] },
+            { id: 6, name: "Drivers", icon: "fa-car", desc: "Professional drivers for daily commutes, monthly placement, outstation trips.", subs: ["Daily Work Commute", "Monthly Permanent Booking", "Outstation/Long-Distance Trip", "Luxury Car Handling Specialist"] },
             { id: 7, name: "Security Guard", icon: "fa-shield-halved", desc: "Vetted security personnel for residential complexes, commercial spaces, and event protection.", subs: ["Gate Management Security", "Night Shift Property Patrol", "Commercial Premise Officer", "Event Protection Support"] }
         ];
 
@@ -475,101 +470,179 @@
                             <button onclick="selectCategory('${service.name}')" class="bg-brandRed text-white px-4 py-1.5 rounded-lg text-sm font-bold shadow-md hover:bg-red-700 transition animate-pulse-glow">Select</button>
                         </div>
                     </div>
-                    <div id="info-${service.id}" class="hidden px-4 pb-4 text-sm text-gray-500 border-t border-gray-50 pt-3">
-                        ${service.desc}
-                    </div>
+                    <div id="info-${service.id}" class="hidden px-4 pb-4 text-sm text-gray-500 border-t border-gray-50 pt-3">${service.desc}</div>
                 </div>`;
             });
             container.innerHTML = html;
         }
         buildAccordion();
 
-        function switchView(viewId) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('view-active'));
-            document.getElementById(viewId).classList.add('view-active');
-            
-            const navIds = ['portfolio', 'booking', 'tracking'];
-            navIds.forEach(id => {
-                const btn = document.getElementById('nav-' + id);
-                if(btn) {
-                    if(id === viewId) {
-                        btn.classList.remove('text-gray-400');
-                        btn.classList.add('text-brandRed');
-                    } else {
-                        btn.classList.add('text-gray-400');
-                        btn.classList.remove('text-brandRed');
-                    }
-                }
-            });
-            window.scrollTo(0,0);
-        }
-
-        function toggleInfo(id) {
-            const el = document.getElementById(id);
-            if(el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-            } else {
-                el.classList.add('hidden');
-            }
-        }
-
-        function selectCategory(categoryName) {
-            document.getElementById('selectedCategoryTitle').innerText = categoryName;
-            const container = document.getElementById('subServicesContainer');
-            container.innerHTML = ''; 
-            
-            const serviceObj = servicesData.find(s => s.name === categoryName);
-            const list = serviceObj ? serviceObj.subs : [];
-            
-            list.forEach(item => {
-                container.innerHTML += `
-                <label class="flex items-center space-x-3 p-2 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition">
-                    <input type="checkbox" value="${item}" class="rounded text-brandRed focus:ring-brandRed w-4 h-4">
-                    <span class="text-sm text-gray-700 font-medium">${item}</span>
-                </label>`;
-            });
-
-            document.getElementById('bookingStep1').classList.add('hidden');
-            document.getElementById('bookingStep2').classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
-
-        function goBackToCategories() {
-            document.getElementById('bookingStep2').classList.add('hidden');
-            document.getElementById('bookingStep1').classList.remove('hidden');
-        }
+        function switchView(id) { document.querySelectorAll('.view-section').forEach(e=>e.classList.remove('view-active')); document.getElementById(id).classList.add('view-active'); ['portfolio','booking','tracking'].forEach(n => { const b = document.getElementById('nav-'+n); if(b) { b.classList.toggle('text-brandRed', n===id); b.classList.toggle('text-gray-400', n!==id); } }); window.scrollTo(0,0); }
+        function toggleInfo(id) { const el = document.getElementById(id); el.classList.toggle('hidden'); }
+        function selectCategory(name) { document.getElementById('selectedCategoryTitle').innerText = name; const container = document.getElementById('subServicesContainer'); container.innerHTML = ''; const list = servicesData.find(s => s.name === name)?.subs || []; list.forEach(item => { container.innerHTML += `<label class="flex items-center space-x-3 p-2 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition"><input type="checkbox" value="${item}" class="rounded text-brandRed focus:ring-brandRed w-4 h-4"><span class="text-sm text-gray-700 font-medium">${item}</span></label>`; }); document.getElementById('bookingStep1').classList.add('hidden'); document.getElementById('bookingStep2').classList.remove('hidden'); window.scrollTo(0,0); }
+        function goBackToCategories() { document.getElementById('bookingStep2').classList.add('hidden'); document.getElementById('bookingStep1').classList.remove('hidden'); }
 
         function handleBooking(e) {
             e.preventDefault();
             const checkedBoxes = document.querySelectorAll('#subServicesContainer input[type="checkbox"]:checked');
-            if (checkedBoxes.length === 0) {
-                alert("Please select at least one sub-service option.");
-                return;
+            if (checkedBoxes.length === 0) return alert("Please select at least one sub-service option.");
+            
+            const name = document.getElementById('bkName').value;
+            const phone = document.getElementById('bkPhone').value;
+            const date = document.getElementById('bkDate').value;
+            const pin = document.getElementById('bkPin').value;
+            const cat = document.getElementById('selectedCategoryTitle').innerText;
+            let subsList = []; checkedBoxes.forEach(box => subsList.push(box.value));
+
+            // Log to Google Sheets
+            if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
+                fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: "newBooking", name: name, phone: phone, category: cat, subs: subsList.join(", "), startDate: date, pincode: pin }) });
             }
-            showModal("Booking Request Created", "We received your request. Our manager will call you shortly.");
-            e.target.reset();
-            goBackToCategories();
-            switchView('portfolio');
+
+            // Redirect to WhatsApp
+            const msg = `Hi Priya Seva Center, I am requesting a new booking:%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Location Pin:* ${pin}%0A*Category:* ${cat}%0A*Services:* ${subsList.join(", ")}%0A*Start Date:* ${date}%0A%0APlease confirm my request.`;
+            window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
+            
+            e.target.reset(); goBackToCategories(); switchView('portfolio');
         }
 
-        function mockLogin() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('dashboardScreen').classList.remove('hidden'); }
-        function mockLogout() { document.getElementById('dashboardScreen').classList.add('hidden'); document.getElementById('loginScreen').classList.remove('hidden'); }
+        // ==========================================
+        // 4. SUPABASE AUTHENTICATION & DASHBOARD
+        // ==========================================
+        let isSignUpMode = false;
+
+        function toggleAuthMode(mode) {
+            isSignUpMode = (mode === 'signup');
+            document.getElementById('tabLogin').className = isSignUpMode ? "flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy" : "flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy";
+            document.getElementById('tabSignup').className = !isSignUpMode ? "flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy" : "flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy";
+            document.getElementById('authName').classList.toggle('hidden', !isSignUpMode);
+            document.getElementById('authPhone').classList.toggle('hidden', !isSignUpMode);
+            document.getElementById('authBtn').innerText = isSignUpMode ? "Create Account" : "Access Dashboard";
+        }
+
+        async function handleAuth() {
+            if(SUPABASE_URL === "YOUR_SUPABASE_URL_HERE") return alert("Please configure Supabase Keys in the code first.");
+
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+            const btn = document.getElementById('authBtn');
+            btn.innerText = "Processing...";
+
+            if (isSignUpMode) {
+                const name = document.getElementById('authName').value;
+                const phone = document.getElementById('authPhone').value;
+                const { data, error } = await supabase.auth.signUp({ email: email, password: password });
+                if (error) { alert(error.message); btn.innerText = "Create Account"; return; }
+                
+                if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
+                    await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: "signup", name: name, phone: phone, email: email, pin: "SECURE" }) });
+                }
+                alert("Account created! You are now logged in.");
+                loadDashboard(phone, name);
+            } else {
+                const { data, error } = await supabase.auth.signInWithPassword({ email: email, password: password });
+                if (error) { alert("Invalid credentials."); btn.innerText = "Access Dashboard"; return; }
+                const phoneCheck = prompt("Security Check: Enter your registered Mobile Number to fetch records:");
+                loadDashboard(phoneCheck, "Client");
+            }
+        }
+
+        async function loadDashboard(phone, name) {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.remove('hidden');
+            document.getElementById('userWelcome').innerText = `Welcome, ${name}`;
+
+            if(WEB_APP_URL === "YOUR_GOOGLE_WEB_APP_URL_HERE") return;
+
+            const response = await fetch(WEB_APP_URL + `?action=track&phone=${phone}`);
+            const bookings = await response.json();
+            const container = document.getElementById('activeBookingsContainer');
+            
+            if(bookings.length > 0) {
+                container.innerHTML = '';
+                bookings.forEach(b => {
+                    let statusColor = b.status === "Active" ? "text-green-700 bg-green-50" : "text-yellow-700 bg-yellow-50";
+                    container.innerHTML += `
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
+                        <div class="${statusColor} px-6 py-3 border-b border-gray-100 flex justify-between items-center">
+                            <span class="text-xs font-bold uppercase"><i class="fa-solid fa-circle text-[8px] mr-1"></i> ${b.status}</span>
+                            <span class="text-xs font-bold opacity-60">${b.id}</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brandNavy mb-1">${b.category}</h3>
+                            <p class="text-sm text-gray-500 mb-4">${b.subs}</p>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                                <button onclick="requestAction('edit')" class="text-xs font-bold text-gray-400 hover:text-brandNavy transition"><i class="fa-solid fa-pen mr-1"></i> Modify</button>
+                                <button onclick="downloadInvoice('${b.id}', '${b.category}', '${b.start}')" class="text-xs font-bold bg-brandRed text-white px-4 py-2 rounded-lg hover:bg-red-700 transition shadow-sm"><i class="fa-solid fa-file-invoice mr-1"></i> Download Invoice</button>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            }
+        }
+
+        function logOut() {
+            if(SUPABASE_URL !== "YOUR_SUPABASE_URL_HERE") supabase.auth.signOut();
+            document.getElementById('dashboardScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('authBtn').innerText = "Access Dashboard";
+        }
+
         function requestAction(type) {
             if(type === 'cancel') { showModal("Cancellation Registered", "Your request is logged. We will verify via phone shortly."); }
             else { showModal("Update Requested", "We will contact you to coordinate schedule changes."); }
         }
 
         function showModal(title, text) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalText').innerText = text;
-            const modal = document.getElementById('actionModal');
-            modal.classList.remove('hidden');
+            document.getElementById('modalTitle').innerText = title; document.getElementById('modalText').innerText = text;
+            const modal = document.getElementById('actionModal'); modal.classList.remove('hidden');
             setTimeout(() => { document.getElementById('modalContent').classList.remove('scale-95'); document.getElementById('modalContent').classList.add('scale-100'); }, 10);
         }
         function closeModal() {
-            document.getElementById('modalContent').classList.remove('scale-100');
-            document.getElementById('modalContent').classList.add('scale-95');
+            document.getElementById('modalContent').classList.remove('scale-100'); document.getElementById('modalContent').classList.add('scale-95');
             setTimeout(() => { document.getElementById('actionModal').classList.add('hidden'); }, 200);
+        }
+
+        // ==========================================
+        // 5. INVOICE GENERATOR
+        // ==========================================
+        function downloadInvoice(bookingId, serviceName, startDate) {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Invoice - ${bookingId}</title>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                </head>
+                <body class="p-12 font-sans bg-gray-50">
+                    <div class="max-w-2xl mx-auto bg-white p-10 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex justify-between items-end border-b-4 border-rose-600 pb-6 mb-6">
+                            <div>
+                                <h1 class="text-4xl font-extrabold text-slate-900">PRIYA SEVA CENTER</h1>
+                                <p class="text-sm text-gray-500 mt-1">48 Sahid Binoy Bose Road, Kolkata</p>
+                            </div>
+                            <div class="text-right">
+                                <h2 class="text-2xl font-bold text-gray-300">INVOICE</h2>
+                                <p class="text-sm font-bold text-slate-800 mt-1">#${bookingId}</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <p class="text-sm text-gray-500 uppercase tracking-wide font-bold">Service Details</p>
+                            <div class="bg-slate-50 p-4 rounded-lg mt-2">
+                                <p class="text-lg font-bold text-slate-800">${serviceName}</p>
+                                <p class="text-sm text-gray-600 mt-1">Commencement Date: ${startDate}</p>
+                            </div>
+                        </div>
+                        <div class="text-center mt-12 pt-8 border-t border-gray-200">
+                            <p class="text-sm text-gray-500">Thank you for trusting us with your home care needs.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => { printWindow.print(); printWindow.close(); }, 800);
         }
     </script>
 </body>
