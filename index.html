@@ -73,7 +73,7 @@
             <i class="fa-solid fa-calendar-plus text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Book</span>
         </button>
         <button onclick="switchView('tracking')" id="nav-tracking" class="flex flex-col items-center text-gray-400 w-1/3 hover:text-brandNavy transition">
-            <i class="fa-solid fa-table-columns text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Dashboard</span>
+            <i class="fa-solid fa-user-lock text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Log In</span>
         </button>
     </nav>
 
@@ -89,7 +89,7 @@
         </div>
         <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
             <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
-            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Dashboard</button>
+            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition flex items-center"><i class="fa-solid fa-user-circle mr-2 text-lg"></i> Sign-Up / Log In</button>
             <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md animate-pulse-glow">Book Now</button>
         </div>
     </header>
@@ -115,126 +115,127 @@
                     </button>
 
                     <div class="hero-slide active">
-                        <img src="maid.jpg" alt="Maid Services" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="maid.png" alt="Maid Services" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Trained Ayas & Maids</span>
                                     <span class="hidden md:block">Maid / Aya Services</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Thorough Cleaning</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Professional Cooking</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> 100% Background Verified</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Thorough Cleaning</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Professional Cooking</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> 100% Background Verified</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="nurse.jpg" alt="Nurse Care" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="nurse.png" alt="Nurse Care" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Verified Nurses & Elder Care</span>
                                     <span class="hidden md:block">Nurse / Elder Care</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> 12/24 Hr Bedside Care</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Daily Vitals Monitoring</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Compassionate Support</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> 12/24 Hr Bedside Care</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Daily Vitals Monitoring</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Compassionate Support</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="health.jpg" alt="Physiotherapy" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="health.png" alt="Physiotherapy" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Health Checks & Physiotherapy</span>
-                                    <span class="hidden md:block">Health Checks & Physiotherapy</span>
+                                    <span class="hidden md:block">Health Checks & Physio</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Orthopedic Rehab</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Mobility Training</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> At-Home Sessions</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Orthopedic Rehab</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Mobility Training</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> At-Home Sessions</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="babysitter.jpg" alt="Babysitter" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="babysitter.png" alt="Babysitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Trusted Babysitters</span>
                                     <span class="hidden md:block">Babysitters</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Newborn Care</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Toddler Engagement</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Safe & Reliable</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Newborn Care</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Toddler Engagement</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Safe & Reliable</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="petsitter.jpg" alt="Pet Sitter" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="petsitter.png" alt="Pet Sitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Reliable Pet Sitters</span>
                                     <span class="hidden md:block">Pet Sitters</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Daily Walking</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Feeding Routines</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Compassionate Care</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Daily Walking</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Feeding Routines</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Compassionate Care</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="driver.jpg" alt="Professional Driver" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="driver.png" alt="Professional Driver" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Professional Drivers</span>
                                     <span class="hidden md:block">Professional Drivers</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Corporate & Commute</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Luxury Car Handling</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Punctual & Safe</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Corporate & Commute</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Luxury Car Handling</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Punctual & Safe</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="security.jpg" alt="Security Guard" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 right-0 left-0 md:top-0 w-full md:w-[50%] md:left-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/80 to-transparent flex flex-col justify-end md:justify-center px-4 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[280px]">
-                                <h3 class="text-white font-bold text-xl md:text-2xl mb-1 md:mb-3 md:border-l-4 border-brandRed md:pl-3">
+                        <img src="security.png" alt="Security Guard" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
+                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
                                     <span class="md:hidden">Expert Security Guards</span>
                                     <span class="hidden md:block">Security Guards</span>
                                 </h3>
-                                <ul class="hidden md:block text-gray-200 text-sm space-y-2">
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Gate Management</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Night Patrols</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-5"></i> Vetted Personnel</li>
+                                <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Gate Management</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Night Patrols</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Vetted Personnel</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full hover:bg-gray-800 transition text-lg animate-pulse-glow">
+                
+                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full hover:bg-brandRed transition-colors duration-300 text-lg animate-pulse-glow">
                     Book a Service Now
                 </button>
             </div>
@@ -284,7 +285,7 @@
             </div>
 
             <div id="bookingStep2" class="hidden">
-                <button onclick="goBackToCategories()" class="text-xs font-bold text-brandRed uppercase tracking-wider mb-4 flex items-center">
+                <button onclick="goBackToCategories()" class="text-xs font-bold text-brandRed uppercase tracking-wider mb-4 flex items-center hover:underline">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Back to Options
                 </button>
                 <div class="mb-6">
@@ -398,7 +399,7 @@
         const SUPABASE_URL = "https://ojwgiteesqkdlhhfpnud.supabase.co"; 
         const SUPABASE_KEY = "sb_publishable_FbYYDySk0Ce8-iH7II76uQ_IUZA6RdY";
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbxZdLLtoyAQL9rOGy4cQ9ORQ4FkIOAVTWQFy-dgk632c1Vo_an9PyuJmVKEbRhjRp6I/exec";
-        const WHATSAPP_NUM = "7439392803"; // PUT YOUR NUMBER HERE
+        const WHATSAPP_NUM = "7439392803"; 
 
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -477,7 +478,23 @@
         }
         buildAccordion();
 
-        function switchView(id) { document.querySelectorAll('.view-section').forEach(e=>e.classList.remove('view-active')); document.getElementById(id).classList.add('view-active'); ['portfolio','booking','tracking'].forEach(n => { const b = document.getElementById('nav-'+n); if(b) { b.classList.toggle('text-brandRed', n===id); b.classList.toggle('text-gray-400', n!==id); } }); window.scrollTo(0,0); }
+        function switchView(id) { 
+            document.querySelectorAll('.view-section').forEach(e=>e.classList.remove('view-active')); 
+            document.getElementById(id).classList.add('view-active'); 
+            
+            // Fix: Ensure the booking flow always resets to Step 1
+            if (id === 'booking') goBackToCategories();
+
+            ['portfolio','booking','tracking'].forEach(n => { 
+                const b = document.getElementById('nav-'+n); 
+                if(b) { 
+                    b.classList.toggle('text-brandRed', n===id); 
+                    b.classList.toggle('text-gray-400', n!==id); 
+                } 
+            }); 
+            window.scrollTo(0,0); 
+        }
+
         function toggleInfo(id) { const el = document.getElementById(id); el.classList.toggle('hidden'); }
         function selectCategory(name) { document.getElementById('selectedCategoryTitle').innerText = name; const container = document.getElementById('subServicesContainer'); container.innerHTML = ''; const list = servicesData.find(s => s.name === name)?.subs || []; list.forEach(item => { container.innerHTML += `<label class="flex items-center space-x-3 p-2 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition"><input type="checkbox" value="${item}" class="rounded text-brandRed focus:ring-brandRed w-4 h-4"><span class="text-sm text-gray-700 font-medium">${item}</span></label>`; }); document.getElementById('bookingStep1').classList.add('hidden'); document.getElementById('bookingStep2').classList.remove('hidden'); window.scrollTo(0,0); }
         function goBackToCategories() { document.getElementById('bookingStep2').classList.add('hidden'); document.getElementById('bookingStep1').classList.remove('hidden'); }
@@ -494,12 +511,10 @@
             const cat = document.getElementById('selectedCategoryTitle').innerText;
             let subsList = []; checkedBoxes.forEach(box => subsList.push(box.value));
 
-            // Log to Google Sheets
             if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
                 fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: "newBooking", name: name, phone: phone, category: cat, subs: subsList.join(", "), startDate: date, pincode: pin }) });
             }
 
-            // Redirect to WhatsApp
             const msg = `Hi Priya Seva Center, I am requesting a new booking:%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Location Pin:* ${pin}%0A*Category:* ${cat}%0A*Services:* ${subsList.join(", ")}%0A*Start Date:* ${date}%0A%0APlease confirm my request.`;
             window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
             
