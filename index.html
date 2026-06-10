@@ -31,19 +31,15 @@
         /* --- CUSTOM ANIMATIONS --- */
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
+            50% { transform: scale(1.15); }
         }
-        .animate-heartbeat {
-            animation: heartbeat 1.2s ease-in-out infinite;
-        }
+        .animate-heartbeat { animation: heartbeat 1.2s ease-in-out infinite; }
 
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transform: scale(1); }
-            50% { box-shadow: 0 0 20px rgba(225, 29, 72, 0.4); transform: scale(1.03); }
+            0%, 100% { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transform: scale(1); }
+            50% { box-shadow: 0 0 20px rgba(225, 29, 72, 0.4); transform: scale(1.02); }
         }
-        .animate-pulse-glow {
-            animation: pulse-glow 2.5s infinite;
-        }
+        .animate-pulse-glow { animation: pulse-glow 2.5s infinite; }
 
         /* --- SLIDESHOW CSS --- */
         .hero-slide {
@@ -51,15 +47,14 @@
             inset: 0;
             z-index: 1;
         }
-        
         .hero-overlay {
             opacity: 0;
-            transition: opacity 0.6s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
         }
-        
+        /* Fades the gradient in ONLY after the slide arrives */
         .hero-slide.active .hero-overlay {
             opacity: 1;
-            transition-delay: 0.8s; 
+            transition-delay: 0.5s; 
         }
     </style>
 </head>
@@ -87,10 +82,14 @@
                 <p class="text-[10px] md:text-xs text-gray-500">Kolkata</p>
             </div>
         </div>
-        <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
+        <div class="hidden md:flex items-center space-x-6 font-semibold text-sm">
             <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
-            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition flex items-center"><i class="fa-solid fa-user-circle mr-2 text-lg"></i> Sign-Up / Log In</button>
-            <button onclick="switchView('booking')" class="bg-brandRed text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md animate-pulse-glow">Book Now</button>
+            
+            <button onclick="switchView('tracking')" class="text-brandNavy border-2 border-gray-200 hover:border-brandRed hover:text-brandRed px-5 py-2 rounded-full transition flex items-center">
+                <i class="fa-solid fa-user-circle mr-2 text-lg"></i> Sign-Up / Log In
+            </button>
+            
+            <button onclick="switchView('booking')" class="bg-brandRed text-white px-8 py-2.5 rounded-full hover:bg-rose-700 transition shadow-md animate-pulse-glow">Book Now</button>
         </div>
     </header>
 
@@ -105,43 +104,43 @@
                 </h2>
                 <p class="text-gray-600 mb-8 max-w-2xl mx-auto text-sm md:text-base">Trained nurses, verified ayas, and expert physiotherapists delivered with warmth, respect, and zero hidden costs.</p>
                 
-                <div class="relative w-full h-80 md:h-[450px] bg-gray-900 rounded-2xl overflow-hidden shadow-xl mb-8 border border-gray-200">
+                <div class="relative w-full h-80 md:h-[450px] bg-brandNavy rounded-2xl overflow-hidden shadow-2xl mb-8 border border-gray-200">
                     
-                    <button onclick="slidePrev()" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-brandRed text-white rounded-full flex items-center justify-center z-20 transition backdrop-blur-sm shadow-md">
+                    <button onclick="slidePrev()" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-brandRed text-white rounded-full flex items-center justify-center z-30 transition backdrop-blur-sm shadow-md">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button onclick="slideNext()" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-brandRed text-white rounded-full flex items-center justify-center z-20 transition backdrop-blur-sm shadow-md">
+                    <button onclick="slideNext()" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-brandRed text-white rounded-full flex items-center justify-center z-30 transition backdrop-blur-sm shadow-md">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
 
                     <div class="hero-slide active">
-                        <img src="maid.jpg" alt="Maid Services" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
+                        <img src="maid.png" alt="Maid Services" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
                                     <span class="md:hidden">Trained Ayas & Maids</span>
                                     <span class="hidden md:block">Maid / Aya Services</span>
                                 </h3>
                                 <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Thorough Cleaning</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Professional Cooking</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> 100% Background Verified</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Background Verified</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="hero-slide">
-                        <img src="nurse.jpg" alt="Nurse Care" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
-                                    <span class="md:hidden">Verified Nurses & Elder Care</span>
+                        <img src="nurse.png" alt="Nurse Care" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
+                                    <span class="md:hidden">Verified Nurses & Care</span>
                                     <span class="hidden md:block">Nurse / Elder Care</span>
                                 </h3>
                                 <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> 12/24 Hr Bedside Care</li>
-                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Daily Vitals Monitoring</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Vitals Monitoring</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-brandRed w-6 text-lg"></i> Compassionate Support</li>
                                 </ul>
                             </div>
@@ -149,11 +148,11 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="health.jpg" alt="Physiotherapy" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
-                                    <span class="md:hidden">Health Checks & Physiotherapy</span>
+                        <img src="health.png" alt="Physiotherapy" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
+                                    <span class="md:hidden">Health Checks & Physio</span>
                                     <span class="hidden md:block">Health Checks & Physio</span>
                                 </h3>
                                 <ul class="hidden md:block text-gray-100 text-base space-y-3 drop-shadow-md">
@@ -166,10 +165,10 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="babysitter.jpg" alt="Babysitter" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
+                        <img src="babysitter.png" alt="Babysitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
                                     <span class="md:hidden">Trusted Babysitters</span>
                                     <span class="hidden md:block">Babysitters</span>
                                 </h3>
@@ -183,10 +182,10 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="petsitter.jpg" alt="Pet Sitter" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
+                        <img src="petsitter.png" alt="Pet Sitter" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
                                     <span class="md:hidden">Reliable Pet Sitters</span>
                                     <span class="hidden md:block">Pet Sitters</span>
                                 </h3>
@@ -200,10 +199,10 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="driver.jpg" alt="Professional Driver" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
+                        <img src="driver.png" alt="Professional Driver" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
                                     <span class="md:hidden">Professional Drivers</span>
                                     <span class="hidden md:block">Professional Drivers</span>
                                 </h3>
@@ -217,10 +216,10 @@
                     </div>
 
                     <div class="hero-slide">
-                        <img src="security.jpg" alt="Security Guard" class="w-full h-full object-cover">
-                        <div class="hero-overlay absolute bottom-0 md:top-0 right-0 left-0 md:left-auto w-full h-1/2 md:h-full md:w-[50%] bg-gradient-to-t md:bg-gradient-to-l from-black via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 py-6 md:px-12 md:py-0">
-                            <div class="md:ml-auto w-full md:max-w-[300px] text-left md:text-left">
-                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-3 drop-shadow-md">
+                        <img src="security.png" alt="Security Guard" class="w-full h-full object-cover">
+                        <div class="hero-overlay absolute bottom-0 right-0 w-full pt-24 pb-6 md:pt-0 md:pb-0 md:top-0 md:h-full md:w-[60%] bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/70 to-transparent flex flex-col justify-end md:justify-center px-6 md:px-16 z-10">
+                            <div class="md:ml-auto w-full md:max-w-[320px] text-left">
+                                <h3 class="text-white font-bold text-2xl md:text-3xl mb-1 md:mb-4 md:border-l-4 border-brandRed md:pl-4 drop-shadow-lg">
                                     <span class="md:hidden">Expert Security Guards</span>
                                     <span class="hidden md:block">Security Guards</span>
                                 </h3>
@@ -235,7 +234,7 @@
 
                 </div>
                 
-                <button onclick="switchView('booking')" class="bg-brandNavy text-white font-bold py-4 px-10 rounded-full hover:bg-brandRed transition-colors duration-300 text-lg animate-pulse-glow">
+                <button onclick="switchView('booking')" class="mt-4 bg-brandNavy text-white font-bold py-4 px-12 rounded-full hover:bg-brandRed transition-colors duration-300 text-lg shadow-xl animate-pulse-glow">
                     Book a Service Now
                 </button>
             </div>
@@ -355,7 +354,7 @@
                         <h2 class="text-2xl font-extrabold text-brandNavy" id="userWelcome">My Dashboard</h2>
                         <p class="text-sm text-gray-500">Manage schedules and billing.</p>
                     </div>
-                    <button onclick="logOut()" class="text-xs font-bold text-gray-400 hover:text-brandRed">Sign Out</button>
+                    <button onclick="logOut()" class="text-xs font-bold text-gray-400 hover:text-brandRed transition">Sign Out</button>
                 </div>
                 
                 <div id="activeBookingsContainer">
@@ -401,7 +400,8 @@
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbxZdLLtoyAQL9rOGy4cQ9ORQ4FkIOAVTWQFy-dgk632c1Vo_an9PyuJmVKEbRhjRp6I/exec";
         const WHATSAPP_NUM = "7439392803"; 
 
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // CRITICAL FIX: Renamed the variable to `supabaseApp` to avoid JS collision crashes.
+        const supabaseApp = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // ==========================================
         // 2. SLIDESHOW LOGIC
@@ -424,22 +424,33 @@
 
         function goToSlide(newIndex, direction = 'next') {
             if (newIndex === currentSlide) return;
-            const current = slides[currentSlide]; const next = slides[newIndex];
+            const current = slides[currentSlide]; 
+            const next = slides[newIndex];
+            
             next.style.transition = 'none';
-            if (direction === 'next') { next.style.transform = 'translateX(100%)'; current.style.transform = 'translateX(-100%)'; } 
-            else { next.style.transform = 'translateX(-100%)'; current.style.transform = 'translateX(100%)'; }
+            if (direction === 'next') { 
+                next.style.transform = 'translateX(100%)'; 
+                current.style.transform = 'translateX(-100%)'; 
+            } else { 
+                next.style.transform = 'translateX(-100%)'; 
+                current.style.transform = 'translateX(100%)'; 
+            }
+            
             void next.offsetWidth; 
             current.style.transition = 'transform 0.8s ease-in-out';
             next.style.transition = 'transform 0.8s ease-in-out';
             next.style.transform = 'translateX(0)';
-            current.classList.remove('active'); next.classList.add('active');
+            
+            current.classList.remove('active'); 
+            next.classList.add('active');
             currentSlide = newIndex;
         }
 
         function slideNext() { let nextIndex = (currentSlide + 1) % slides.length; goToSlide(nextIndex, 'next'); resetInterval(); }
         function slidePrev() { let prevIndex = (currentSlide - 1 + slides.length) % slides.length; goToSlide(prevIndex, 'prev'); resetInterval(); }
-        function startInterval() { slideInterval = setInterval(slideNext, 10000); }
+        function startInterval() { slideInterval = setInterval(slideNext, 8000); }
         function resetInterval() { clearInterval(slideInterval); startInterval(); }
+        
         document.addEventListener('DOMContentLoaded', initSlides);
 
         // ==========================================
@@ -511,10 +522,12 @@
             const cat = document.getElementById('selectedCategoryTitle').innerText;
             let subsList = []; checkedBoxes.forEach(box => subsList.push(box.value));
 
+            // Log to Google Sheets securely
             if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
                 fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: "newBooking", name: name, phone: phone, category: cat, subs: subsList.join(", "), startDate: date, pincode: pin }) });
             }
 
+            // Route to WhatsApp
             const msg = `Hi Priya Seva Center, I am requesting a new booking:%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Location Pin:* ${pin}%0A*Category:* ${cat}%0A*Services:* ${subsList.join(", ")}%0A*Start Date:* ${date}%0A%0APlease confirm my request.`;
             window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
             
@@ -536,8 +549,6 @@
         }
 
         async function handleAuth() {
-            if(SUPABASE_URL === "YOUR_SUPABASE_URL_HERE") return alert("Please configure Supabase Keys in the code first.");
-
             const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPassword').value;
             const btn = document.getElementById('authBtn');
@@ -546,7 +557,9 @@
             if (isSignUpMode) {
                 const name = document.getElementById('authName').value;
                 const phone = document.getElementById('authPhone').value;
-                const { data, error } = await supabase.auth.signUp({ email: email, password: password });
+                // FIX: Use the new supabaseApp variable
+                const { data, error } = await supabaseApp.auth.signUp({ email: email, password: password });
+                
                 if (error) { alert(error.message); btn.innerText = "Create Account"; return; }
                 
                 if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
@@ -555,7 +568,9 @@
                 alert("Account created! You are now logged in.");
                 loadDashboard(phone, name);
             } else {
-                const { data, error } = await supabase.auth.signInWithPassword({ email: email, password: password });
+                // FIX: Use the new supabaseApp variable
+                const { data, error } = await supabaseApp.auth.signInWithPassword({ email: email, password: password });
+                
                 if (error) { alert("Invalid credentials."); btn.innerText = "Access Dashboard"; return; }
                 const phoneCheck = prompt("Security Check: Enter your registered Mobile Number to fetch records:");
                 loadDashboard(phoneCheck, "Client");
@@ -597,7 +612,8 @@
         }
 
         function logOut() {
-            if(SUPABASE_URL !== "YOUR_SUPABASE_URL_HERE") supabase.auth.signOut();
+            // FIX: Use the new supabaseApp variable
+            supabaseApp.auth.signOut();
             document.getElementById('dashboardScreen').classList.add('hidden');
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('authBtn').innerText = "Access Dashboard";
