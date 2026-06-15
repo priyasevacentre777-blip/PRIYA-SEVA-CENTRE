@@ -51,7 +51,6 @@
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
         }
-        /* Fades the gradient in ONLY after the slide arrives */
         .hero-slide.active .hero-overlay {
             opacity: 1;
             transition-delay: 0.5s; 
@@ -68,7 +67,7 @@
             <i class="fa-solid fa-calendar-plus text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Book</span>
         </button>
         <button onclick="switchView('tracking')" id="nav-tracking" class="flex flex-col items-center text-gray-400 w-1/3 hover:text-brandNavy transition">
-            <i class="fa-solid fa-user-lock text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Log In</span>
+            <i class="fa-solid fa-table-columns text-xl mb-1"></i><span class="text-[10px] font-bold uppercase tracking-wider">Dashboard</span>
         </button>
     </nav>
 
@@ -83,9 +82,9 @@
             </div>
         </div>
         <div class="hidden md:flex items-center space-x-6 font-semibold text-sm">
-            <button onclick="switchView('portfolio')" class="text-brandNavy hover:text-brandRed transition">Portfolio</button>
+            <button onclick="switchView('tracking')" class="text-brandNavy hover:text-brandRed transition">Dashboard</button>
             
-            <button onclick="switchView('tracking')" class="text-brandNavy border-2 border-gray-200 hover:border-brandRed hover:text-brandRed px-5 py-2 rounded-full transition flex items-center">
+            <button onclick="switchView('tracking')" id="desktopAuthBtn" class="text-brandNavy border-2 border-gray-200 hover:border-brandRed hover:text-brandRed px-5 py-2 rounded-full transition flex items-center">
                 <i class="fa-solid fa-user-circle mr-2 text-lg"></i> Sign-Up / Log In
             </button>
             
@@ -400,7 +399,6 @@
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbwbMnRja2lR8ubkd3CRj63X1hego7550HSbJgdmNJtOj7fRI4a20cDmkczb4yyHIwyo/exec";
         const WHATSAPP_NUM = "7439392803"; 
 
-        // CRITICAL FIX: Renamed the variable to `supabaseApp` to avoid JS collision crashes.
         const supabaseApp = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // ==========================================
@@ -493,7 +491,6 @@
             document.querySelectorAll('.view-section').forEach(e=>e.classList.remove('view-active')); 
             document.getElementById(id).classList.add('view-active'); 
             
-            // Fix: Ensure the booking flow always resets to Step 1
             if (id === 'booking') goBackToCategories();
 
             ['portfolio','booking','tracking'].forEach(n => { 
@@ -522,12 +519,10 @@
             const cat = document.getElementById('selectedCategoryTitle').innerText;
             let subsList = []; checkedBoxes.forEach(box => subsList.push(box.value));
 
-            // Log to Google Sheets securely
             if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
                 fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: "newBooking", name: name, phone: phone, category: cat, subs: subsList.join(", "), startDate: date, pincode: pin }) });
             }
 
-            // Route to WhatsApp
             const msg = `Hi Priya Seva Center, I am requesting a new booking:%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Location Pin:* ${pin}%0A*Category:* ${cat}%0A*Services:* ${subsList.join(", ")}%0A*Start Date:* ${date}%0A%0APlease confirm my request.`;
             window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
             
@@ -557,7 +552,6 @@
             if (isSignUpMode) {
                 const name = document.getElementById('authName').value;
                 const phone = document.getElementById('authPhone').value;
-                // FIX: Use the new supabaseApp variable
                 const { data, error } = await supabaseApp.auth.signUp({ email: email, password: password });
                 
                 if (error) { alert(error.message); btn.innerText = "Create Account"; return; }
@@ -568,7 +562,6 @@
                 alert("Account created! You are now logged in.");
                 loadDashboard(phone, name);
             } else {
-                // FIX: Use the new supabaseApp variable
                 const { data, error } = await supabaseApp.auth.signInWithPassword({ email: email, password: password });
                 
                 if (error) { alert("Invalid credentials."); btn.innerText = "Access Dashboard"; return; }
@@ -582,6 +575,10 @@
             document.getElementById('dashboardScreen').classList.remove('hidden');
             document.getElementById('userWelcome').innerText = `Welcome, ${name}`;
 
+            // Update top desktop auth button state visually
+            const authBtn = document.getElementById('desktopAuthBtn');
+            if(authBtn) authBtn.innerHTML = `<i class="fa-solid fa-user-check mr-2 text-lg"></i> ${name}`;
+
             if(WEB_APP_URL === "YOUR_GOOGLE_WEB_APP_URL_HERE") return;
 
             const response = await fetch(WEB_APP_URL + `?action=track&phone=${phone}`);
@@ -591,7 +588,7 @@
             if(bookings.length > 0) {
                 container.innerHTML = '';
                 bookings.forEach(b => {
-                    let statusColor = b.status === "Active" ? "text-green-700 bg-green-50" : "text-yellow-700 bg-yellow-50";
+                    let statusColor = b.status === "Active" || b.status === "Confirmed" ? "text-green-700 bg-green-50" : "text-yellow-700 bg-yellow-50";
                     container.innerHTML += `
                     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
                         <div class="${statusColor} px-6 py-3 border-b border-gray-100 flex justify-between items-center">
@@ -612,11 +609,14 @@
         }
 
         function logOut() {
-            // FIX: Use the new supabaseApp variable
             supabaseApp.auth.signOut();
             document.getElementById('dashboardScreen').classList.add('hidden');
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('authBtn').innerText = "Access Dashboard";
+            
+            // Revert top desktop auth button
+            const authBtn = document.getElementById('desktopAuthBtn');
+            if(authBtn) authBtn.innerHTML = `<i class="fa-solid fa-user-circle mr-2 text-lg"></i> Sign-Up / Log In`;
         }
 
         function requestAction(type) {
