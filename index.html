@@ -327,7 +327,7 @@
                     <input type="email" id="authEmail" placeholder="Email Address" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
                     <input type="password" id="authPassword" placeholder="Password" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
                     
-                    <button onclick="handleAuth()" id="authBtn" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-md hover:bg-gray-800 transition">
+                    <button onclick="handleAuth()" id="authBtn" data-mode="login" class="w-full bg-brandNavy text-white font-bold py-4 rounded-xl shadow-md hover:bg-gray-800 transition">
                         Access Dashboard
                     </button>
                 </div>
@@ -394,10 +394,7 @@
         // 1. CONFIGURATION & SECRETS
         // ==========================================
         const SUPABASE_URL = "https://ojwgiteesqkdlhhfpnud.supabase.co"; 
-        
-        // FIXED EXACT KEY MATCH FROM SCREENSHOT
-        const SUPABASE_KEY = "sb_publishable_FbYYDySk0Ce8-iH7II76uQ_IUZA6RdY";
-        
+        const SUPABASE_KEY = "sb_publishable_fbYYDySk8Ce8-iH7II76uQ_IUZA6RdY";
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbyZDUwjtbk5gDTQrMQyB9uvsA4r8i_6WVcT-a20mZ4hW2Zf1gYv1AFyZ72o_YdB1WWS/exec";
         const WHATSAPP_NUM = "7439392803"; 
 
@@ -519,7 +516,7 @@
             const cat = document.getElementById('selectedCategoryTitle').innerText;
             let subsList = []; checkedBoxes.forEach(box => subsList.push(box.value));
 
-            // GUARANTEED GOOGLE SHEETS POST
+            // Push to Sheets blindly without CORS restriction
             fetch(WEB_APP_URL, { 
                 method: 'POST', 
                 mode: 'no-cors',
@@ -534,33 +531,48 @@
         }
 
         // ==========================================
-        // 4. AUTHENTICATION & MULTI-STATE DASHBOARD
+        // 4. BULLETPROOF AUTHENTICATION 
         // ==========================================
-        let isSignUpMode = false;
-
         function toggleAuthMode(mode) {
-            isSignUpMode = (mode === 'signup');
-            document.getElementById('tabLogin').className = isSignUpMode ? "flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy" : "flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy";
-            document.getElementById('tabSignup').className = !isSignUpMode ? "flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy" : "flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy";
-            document.getElementById('authName').classList.toggle('hidden', !isSignUpMode); document.getElementById('authPhone').classList.toggle('hidden', !isSignUpMode);
-            document.getElementById('authBtn').innerText = isSignUpMode ? "Create Account" : "Access Dashboard";
+            const isSignUp = (mode === 'signup');
+            
+            document.getElementById('tabLogin').className = isSignUp ? "flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy" : "flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy";
+            document.getElementById('tabSignup').className = !isSignUp ? "flex-1 py-2 text-sm font-bold text-gray-500 hover:text-brandNavy" : "flex-1 py-2 text-sm font-bold bg-white shadow rounded-lg text-brandNavy";
+            
+            if(isSignUp) {
+                document.getElementById('authName').classList.remove('hidden');
+                document.getElementById('authPhone').classList.remove('hidden');
+                document.getElementById('authBtn').innerText = "Create Account";
+                document.getElementById('authBtn').setAttribute("data-mode", "signup");
+            } else {
+                document.getElementById('authName').classList.add('hidden');
+                document.getElementById('authPhone').classList.add('hidden');
+                document.getElementById('authBtn').innerText = "Access Dashboard";
+                document.getElementById('authBtn').setAttribute("data-mode", "login");
+            }
         }
 
         async function handleAuth() {
-            const email = document.getElementById('authEmail').value; const password = document.getElementById('authPassword').value;
-            const btn = document.getElementById('authBtn'); btn.innerText = "Processing...";
+            const email = document.getElementById('authEmail').value; 
+            const password = document.getElementById('authPassword').value;
+            const btn = document.getElementById('authBtn'); 
+            const mode = btn.getAttribute("data-mode") || "login";
+            
+            btn.innerText = "Processing...";
 
-            if (isSignUpMode) {
-                const name = document.getElementById('authName').value; const phone = document.getElementById('authPhone').value;
+            if (mode === "signup") {
+                const name = document.getElementById('authName').value; 
+                const phone = document.getElementById('authPhone').value;
+                
                 const { data, error } = await supabaseApp.auth.signUp({ email: email, password: password });
                 
                 if (error) { 
-                    alert(error.message); 
+                    alert("Sign Up Error: " + error.message); 
                     btn.innerText = "Create Account"; 
                     return; 
                 }
                 
-                // GUARANTEED GOOGLE SHEETS POST
+                // Force sync to Google Sheets without CORS restrictions
                 fetch(WEB_APP_URL, { 
                     method: 'POST', 
                     mode: 'no-cors',
