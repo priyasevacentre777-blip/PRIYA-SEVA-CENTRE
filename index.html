@@ -394,13 +394,15 @@
         // 1. CONFIGURATION & SECRETS
         // ==========================================
         const SUPABASE_URL = "https://ojwgiteesqkdlhhfpnud.supabase.co"; 
-        const SUPABASE_KEY = "sb_publishable_FbYYDySk0Ce8-iH7II76uQ_IUZA6RdY";
+        
+        // FIXED EXACT KEY MATCH FROM SCREENSHOT
+        const SUPABASE_KEY = "sb_publishable_fbYYDySk8Ce8-iH7II76uQ_IUZA6RdY";
+        
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbyZDUwjtbk5gDTQrMQyB9uvsA4r8i_6WVcT-a20mZ4hW2Zf1gYv1AFyZ72o_YdB1WWS/exec";
         const WHATSAPP_NUM = "7439392803"; 
 
         const supabaseApp = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // Security Gatekeeper Variables
         let isLoggedIn = false;
         let loggedInName = "Client";
         let loggedInPhone = "";
@@ -517,15 +519,13 @@
             const cat = document.getElementById('selectedCategoryTitle').innerText;
             let subsList = []; checkedBoxes.forEach(box => subsList.push(box.value));
 
-            if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
-                // FIXED: Opaque request configuration to bypass CORS
-                fetch(WEB_APP_URL, { 
-                    method: 'POST', 
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({ action: "newBooking", name: name, phone: phone, category: cat, subs: subsList.join(", "), startDate: date, pincode: pin }) 
-                }).catch(err => console.error("Sheets Sync Error: ", err));
-            }
+            // GUARANTEED GOOGLE SHEETS POST
+            fetch(WEB_APP_URL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: "newBooking", name: name, phone: phone, category: cat, subs: subsList.join(", "), startDate: date, pincode: pin }) 
+            }).catch(err => console.error("Sheets Sync Error: ", err));
 
             const msg = `Hi Priya Seva Center, I am requesting a new booking:%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Location Pin:* ${pin}%0A*Category:* ${cat}%0A*Services:* ${subsList.join(", ")}%0A*Start Date:* ${date}%0A%0APlease confirm my request.`;
             window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
@@ -554,27 +554,33 @@
                 const name = document.getElementById('authName').value; const phone = document.getElementById('authPhone').value;
                 const { data, error } = await supabaseApp.auth.signUp({ email: email, password: password });
                 
-                if (error) { alert(error.message); btn.innerText = "Create Account"; return; }
-                
-                if(WEB_APP_URL !== "YOUR_GOOGLE_WEB_APP_URL_HERE") {
-                    // FIXED: Opaque request configuration to bypass CORS
-                    await fetch(WEB_APP_URL, { 
-                        method: 'POST', 
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                        body: JSON.stringify({ action: "signup", name: name, phone: phone, email: email, pin: "SECURE" }) 
-                    }).catch(err => console.error("Sheets Sync Error: ", err));
+                if (error) { 
+                    alert(error.message); 
+                    btn.innerText = "Create Account"; 
+                    return; 
                 }
+                
+                // GUARANTEED GOOGLE SHEETS POST
+                fetch(WEB_APP_URL, { 
+                    method: 'POST', 
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: "signup", name: name, phone: phone, email: email, pin: "SECURE" }) 
+                }).catch(err => console.error("Sheets Sync Error: ", err));
                 
                 isLoggedIn = true;
                 loggedInName = name;
                 loggedInPhone = phone;
-                alert("Account created! You are now logged in."); 
+                alert("Account created successfully!"); 
                 loadDashboard(phone, name);
 
             } else {
                 const { data, error } = await supabaseApp.auth.signInWithPassword({ email: email, password: password });
-                if (error) { alert("Invalid credentials."); btn.innerText = "Access Dashboard"; return; }
+                if (error) { 
+                    alert("Invalid credentials. Please try again."); 
+                    btn.innerText = "Access Dashboard"; 
+                    return; 
+                }
                 
                 isLoggedIn = true;
                 const phoneCheck = prompt("Security Check: Enter your registered Mobile Number to fetch records:");
@@ -591,8 +597,6 @@
 
             const authBtn = document.getElementById('desktopAuthBtn');
             if(authBtn) authBtn.innerHTML = `<i class="fa-solid fa-user-check mr-2 text-lg"></i> Dashboard`;
-
-            if(WEB_APP_URL === "YOUR_GOOGLE_WEB_APP_URL_HERE") return;
 
             const response = await fetch(WEB_APP_URL + `?action=track&phone=${phone}`);
             const bookings = await response.json();
