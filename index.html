@@ -394,8 +394,6 @@
         // 1. CONFIGURATION & SECRETS
         // ==========================================
         const SUPABASE_URL = "https://ojwgiteesqkdlhhfpnud.supabase.co"; 
-        
-        // Updated with the correct anon public JWT string
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qd2dpdGVlc3FrZGxoaGZwbnVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NzM2NjMsImV4cCI6MjA5NjU0OTY2M30.wlUUq2dtd-ffS54kMSSvqZI2YTz9zhzC7AMTAddAVPU"; 
         
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbyZDUwjtbk5gDTQrMQyB9uvsA4r8i_6WVcT-a20mZ4hW2Zf1gYv1AFyZ72o_YdB1WWS/exec";
@@ -597,11 +595,15 @@
 
             } else {
                 const { data, error } = await supabaseApp.auth.signInWithPassword({ email: email, password: password });
+                
                 if (error) { 
+                    // ENHANCED ERROR HANDLING FOR LOGIN
                     if(error.message === "Failed to fetch") {
                         alert("Network Error: Check API Key or disable AdBlock.");
+                    } else if (error.message.includes("Email not confirmed") || error.message.includes("Invalid login credentials")) {
+                        alert("Login Failed: Unverified Email or Incorrect Password.\n\nIf you just created this account, it is likely locked because 'Confirm Email' was turned ON in Supabase when you signed up.\n\nFix: Go to Supabase -> Authentication -> Users, DELETE this account, ensure 'Confirm email' is OFF in your Provider settings, and Sign Up again.");
                     } else {
-                        alert("Login Error: " + error.message + "\n\n(Note: If you just created this account, make sure 'Confirm email' is turned OFF in Supabase Auth Provider settings!)"); 
+                        alert("Login Error: " + error.message); 
                     }
                     btn.innerText = "Access Dashboard"; 
                     return; 
