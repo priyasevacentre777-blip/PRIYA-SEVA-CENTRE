@@ -323,7 +323,9 @@
 
                 <div class="space-y-4">
                     <input type="text" id="authName" placeholder="Full Name" class="hidden w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
-                    <input type="tel" id="authPhone" placeholder="Mobile Number" class="hidden w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
+                    
+                    <input type="tel" id="authPhone" placeholder="Mobile Number" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
+                    
                     <input type="email" id="authEmail" placeholder="Email Address" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
                     <input type="password" id="authPassword" placeholder="Password" class="w-full bg-gray-50 border rounded-xl px-4 py-3 outline-none focus:border-brandNavy">
                     
@@ -360,20 +362,23 @@
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 mt-6">
-                    <h3 class="text-sm font-bold text-brandNavy uppercase tracking-wider mb-4 border-l-4 border-brandRed pl-2">Service Calendar</h3>
-                    <div class="flex justify-between items-center text-xs text-gray-500 mb-2 font-bold">
-                        <span>Sun</span><span>Mon</span><span>Tue</span><span class="text-brandRed">Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-bold text-brandNavy uppercase tracking-wider border-l-4 border-brandRed pl-2">Service Calendar</h3>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="changeMonth(-1)" class="text-gray-400 hover:text-brandRed transition p-1"><i class="fa-solid fa-chevron-left"></i></button>
+                            <span id="calendarMonthYear" class="text-sm font-bold text-gray-800 w-28 text-center"></span>
+                            <button onclick="changeMonth(1)" class="text-gray-400 hover:text-brandRed transition p-1"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center text-sm font-semibold">
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400">14</div>
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400">15</div>
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400">16</div>
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brandRed text-white shadow-md">17</div>
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-brandRed">18</div>
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-brandRed">19</div>
-                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-brandRed">20</div>
+                    
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs text-gray-400 mb-2 font-bold uppercase tracking-widest">
+                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
                     </div>
-                    <p class="text-xs text-center text-gray-400 mt-4"><i class="fa-solid fa-circle text-[8px] text-brandRed mr-1"></i> Highlights indicate active service days.</p>
+                    
+                    <div id="calendarDays" class="grid grid-cols-7 gap-1 text-sm font-bold text-center">
+                        </div>
+                    
+                    <p class="text-[10px] text-center text-gray-400 mt-5 uppercase tracking-wider"><i class="fa-solid fa-circle text-[8px] text-brandRed mr-1"></i> Highlights indicate active service dates.</p>
                 </div>
             </div>
         </section>
@@ -394,8 +399,7 @@
         // 1. CONFIGURATION & SECRETS
         // ==========================================
         const SUPABASE_URL = "https://ojwgiteesqkdlhhfpnud.supabase.co"; 
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qd2dpdGVlc3FrZGxoaGZwbnVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NzM2NjMsImV4cCI6MjA5NjU0OTY2M30.wlUUq2dtd-ffS54kMSSvqZI2YTz9zhzC7AMTAddAVPU"; 
-        
+        const SUPABASE_KEY = "sb_publishable_fbYYDySk8Ce8-iH7II76uQ_IUZA6RdY"; 
         const WEB_APP_URL  = "https://script.google.com/macros/s/AKfycbyZDUwjtbk5gDTQrMQyB9uvsA4r8i_6WVcT-a20mZ4hW2Zf1gYv1AFyZ72o_YdB1WWS/exec";
         const WHATSAPP_NUM = "7439392803"; 
 
@@ -533,7 +537,7 @@
         }
 
         // ==========================================
-        // 4. BULLETPROOF AUTHENTICATION 
+        // 4. AUTHENTICATION (REMOVED PROMPT)
         // ==========================================
         function toggleAuthMode(mode) {
             const isSignUp = (mode === 'signup');
@@ -543,12 +547,10 @@
             
             if(isSignUp) {
                 document.getElementById('authName').classList.remove('hidden');
-                document.getElementById('authPhone').classList.remove('hidden');
                 document.getElementById('authBtn').innerText = "Create Account";
                 document.getElementById('authBtn').setAttribute("data-mode", "signup");
             } else {
                 document.getElementById('authName').classList.add('hidden');
-                document.getElementById('authPhone').classList.add('hidden');
                 document.getElementById('authBtn').innerText = "Access Dashboard";
                 document.getElementById('authBtn').setAttribute("data-mode", "login");
             }
@@ -557,23 +559,24 @@
         async function handleAuth() {
             const email = document.getElementById('authEmail').value; 
             const password = document.getElementById('authPassword').value;
+            const phone = document.getElementById('authPhone').value; // Now universally required
             const btn = document.getElementById('authBtn'); 
             const mode = btn.getAttribute("data-mode") || "login";
             
+            if (!phone) {
+                alert("Please enter your mobile number to proceed.");
+                return;
+            }
+
             btn.innerText = "Processing...";
 
             if (mode === "signup") {
                 const name = document.getElementById('authName').value; 
-                const phone = document.getElementById('authPhone').value;
                 
                 const { data, error } = await supabaseApp.auth.signUp({ email: email, password: password });
                 
                 if (error) { 
-                    if(error.message === "Failed to fetch") {
-                        alert("Network Error: Please check your Supabase API Key for typos, or disable any AdBlockers.");
-                    } else {
-                        alert("Sign Up Error: " + error.message); 
-                    }
+                    alert("Sign Up Error: " + error.message); 
                     btn.innerText = "Create Account"; 
                     return; 
                 }
@@ -597,26 +600,76 @@
                 const { data, error } = await supabaseApp.auth.signInWithPassword({ email: email, password: password });
                 
                 if (error) { 
-                    // ENHANCED ERROR HANDLING FOR LOGIN
-                    if(error.message === "Failed to fetch") {
-                        alert("Network Error: Check API Key or disable AdBlock.");
-                    } else if (error.message.includes("Email not confirmed") || error.message.includes("Invalid login credentials")) {
-                        alert("Login Failed: Unverified Email or Incorrect Password.\n\nIf you just created this account, it is likely locked because 'Confirm Email' was turned ON in Supabase when you signed up.\n\nFix: Go to Supabase -> Authentication -> Users, DELETE this account, ensure 'Confirm email' is OFF in your Provider settings, and Sign Up again.");
-                    } else {
-                        alert("Login Error: " + error.message); 
-                    }
+                    alert("Login Error: " + error.message); 
                     btn.innerText = "Access Dashboard"; 
                     return; 
                 }
                 
                 isLoggedIn = true;
-                const phoneCheck = prompt("Security Check: Enter your registered Mobile Number to fetch records:");
-                loggedInPhone = phoneCheck;
+                loggedInPhone = phone; // Uses the newly required inline input
                 loggedInName = "Client";
                 loadDashboard(loggedInPhone, loggedInName);
             }
         }
 
+        // ==========================================
+        // 5. DYNAMIC CALENDAR ENGINE
+        // ==========================================
+        let displayDate = new Date();
+        let userBookingsForCalendar = [];
+
+        function initCalendar() {
+            const monthYearDisplay = document.getElementById('calendarMonthYear');
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+
+            const year = displayDate.getFullYear();
+            const month = displayDate.getMonth();
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            monthYearDisplay.innerText = `${monthNames[month]} ${year}`;
+
+            // Extract active service dates
+            const activeDates = userBookingsForCalendar.map(b => b.start);
+
+            // Add blank spacing for the first row of the grid
+            for (let i = 0; i < firstDay; i++) {
+                calendarDays.innerHTML += `<div></div>`;
+            }
+
+            // Fill calendar with days
+            for (let day = 1; day <= daysInMonth; day++) {
+                // Ensure format YYYY-MM-DD to match the spreadsheet standard
+                const loopDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                const isBooked = activeDates.includes(loopDateStr);
+                const isToday = new Date().toDateString() === new Date(year, month, day).toDateString();
+
+                let classes = "w-8 h-8 sm:w-10 sm:h-10 mx-auto flex items-center justify-center rounded-full transition ";
+                
+                if (isBooked) {
+                    classes += "bg-brandRed text-white shadow-md cursor-pointer hover:bg-rose-700";
+                } else if (isToday) {
+                    classes += "bg-rose-50 text-brandRed border border-brandRed cursor-pointer hover:bg-rose-100";
+                } else {
+                    classes += "text-slate-500 hover:bg-slate-100 cursor-pointer";
+                }
+
+                calendarDays.innerHTML += `<div class="${classes}">${day}</div>`;
+            }
+        }
+
+        function changeMonth(offset) {
+            displayDate.setMonth(displayDate.getMonth() + offset);
+            initCalendar();
+        }
+
+        // ==========================================
+        // 6. DASHBOARD & UI ACTIONS
+        // ==========================================
         async function loadDashboard(phone, name) {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('dashboardScreen').classList.remove('hidden');
@@ -629,6 +682,10 @@
 
             const response = await fetch(WEB_APP_URL + `?action=track&phone=${phone}`);
             const bookings = await response.json();
+            
+            // Map bookings for the dynamic calendar
+            userBookingsForCalendar = bookings.filter(b => b.status !== 'Canceled' && b.status !== 'Completed');
+            initCalendar(); 
             
             let ongoingHtml = '';
             let upcomingHtml = '';
@@ -703,7 +760,7 @@
         }
 
         // ==========================================
-        // 5. INVOICE GENERATOR
+        // 7. INVOICE GENERATOR
         // ==========================================
         function downloadInvoice(bookingId, serviceName, startDate) {
             const printWindow = window.open('', '_blank');
